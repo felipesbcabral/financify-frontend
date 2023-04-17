@@ -61,3 +61,16 @@ body {
 .log-in-button {
   margin-top: 10px;
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
