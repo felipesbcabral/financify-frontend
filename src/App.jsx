@@ -3,6 +3,7 @@ import LoginPage from './components/LoginPage';
 import Logo from './assets/financify-logo.jpg';
 import Home from './components/Home';
 
+
 function App() {
   const [loading, setLoading] = useState(true);
 
