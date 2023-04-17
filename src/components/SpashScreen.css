@@ -1,0 +1,19 @@
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+  }
+  
+  .splash-container img {
+    max-width: 200px;
+  }
+  
+  .splash-container h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-top: 16px;
+  }
+  
