@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LoginPage from './components/LoginPage';
 import Logo from './assets/financify-logo.jpg';
 
+
 function App() {
   const [loading, setLoading] = useState(true);
 
