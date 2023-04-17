@@ -24,10 +24,12 @@ function LoginPage() {
 
   return (
     <div className="login-page">
-      <h1>
+      <div className="logo-container">
         <img src='../src/assets/financify-logo.jpg' alt="Logo do Financify" />
-        Financify
-      </h1>
+      </div>
+      <div className="title-container">
+        <h1>Financify</h1>
+      </div>
       <form onSubmit={handleSubmit}>
         <label>
           E-mail:
