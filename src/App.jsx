@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import LoginPage from './components/LoginPage';
-import Logo from './assets/financify-logo.jpg';
-import Home from './components/Home';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
+import ForgotPassword from "./components/ForgotPassword";
+import NewValues from "./components/NewValues"
+import EditValues from "./components/EditValues";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="App">
-      {loading ? (
-        <div className="loading-screen">
-          {/* Use o ícone aqui */}
-          <img src={Logo} alt="My Icon" />
-        </div>
-      ) : (
-        <Home />
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/ForgotPassword" element={<ForgotPassword />} />
+        <Route path="/New" element={<NewValues />}/>
+        <Route path="/Edit" element={<EditValues />}/>
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+
