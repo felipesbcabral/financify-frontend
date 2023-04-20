@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ForgotPassword.css"; // Importe o arquivo de estilos
+import { Link } from "react-router-dom";
 
 const EsqueciSenha = () => {
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -39,12 +40,12 @@ const EsqueciSenha = () => {
         />
         <br />
         <div className="esqueci-senha-buttons">
-          <button type="submit" className="esqueci-senha-enviar">
+        <Link to="/"> <button type="submit" className="esqueci-senha-enviar">
             Enviar
-          </button>
-          <button type="button" className="esqueci-senha-voltar">
+          </button></Link>
+          <Link to="/"> <button type="button" className="esqueci-senha-voltar">
             Voltar
-          </button>
+          </button></Link>
         </div>
       </form>
     </div>

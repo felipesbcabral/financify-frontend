@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./RegisterPage.css"; // Importe o arquivo de estilos
+import { Link } from "react-router-dom";
 
 const CadastroUsuarios = () => {
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -51,12 +52,12 @@ const CadastroUsuarios = () => {
           />
         </div>
         <div className="button-container">
-          <button type="submit" className="btn-cadastrar">
+         <Link to="/"><button type="submit" className="btn-cadastrar">
             Cadastrar
-          </button>
-          <button type="button" className="btn-voltar">
+          </button></Link>
+          <Link to="/"><button type="button" className="btn-voltar">
             Voltar
-          </button>
+          </button></Link>
         </div>
       </form>
     </div>

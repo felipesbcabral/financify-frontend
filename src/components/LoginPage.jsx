@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LoginPage.css"; // Importa o arquivo CSS
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -43,14 +44,14 @@ function LoginPage() {
             onChange={handlePasswordChange}
           />
         </label>
-        <button className="log-in-button" type="submit">
+        <Link to="Home  "><button className="log-in-button" type="submit">
           Entrar
-        </button>
+        </button></Link>
       </form>
       <div className="button-container">
         <div className="button-wrapper">
-          <button onClick={handleForgotPassword}>Esqueci minha senha</button>
-          <button>Cadastre-se</button>
+        <Link to="ForgotPassword"> <button onClick={handleForgotPassword}>Esqueci minha senha</button></Link>
+          <Link to="Register"><button>Cadastre-se</button></Link>
         </div>
       </div>
     </div>
