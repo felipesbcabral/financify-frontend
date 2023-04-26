@@ -1,7 +1,7 @@
 .login-page {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space;
   align-items: center;
   height: 100vh;
 }
@@ -26,9 +26,9 @@ input {
 
 .buttons-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  width: 100%;
 }
 
 body {
@@ -42,7 +42,7 @@ body {
 
 .button-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
@@ -51,11 +51,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  justify-content: space-around;
 }
 
 .button-wrapper button {
-  margin-bottom: 20px;
+  margin-bottom: 100px;
 }
 
 .log-in-button {
@@ -65,12 +65,13 @@ body {
 .logo-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .title-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 10rem;
+  margin-left: 100px;
 }

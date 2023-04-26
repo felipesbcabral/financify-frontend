@@ -1,0 +1,29 @@
+.descricao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400%;
+  }
+  .valor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 650%;
+  }
+
+  .meuelemento {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+   
+    
+  }
+  .botaoentrar {
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    justify-content: space-between;
+    
+  }
+  
