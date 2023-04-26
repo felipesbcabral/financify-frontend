@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./RegisterPage.css"; // Importe o arquivo de estilos
 import { Link } from "react-router-dom";
 
 const CadastroUsuarios = () => {

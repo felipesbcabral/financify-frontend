@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import LoginPage from "./components/LoginPage";
-import RegisterPage from "./components/RegisterPage";
-import ForgotPassword from "./components/ForgotPassword";
-import NewValues from "./components/NewValues"
-import EditValues from "./components/EditValues";
-
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ForgotPassword from "./pages/ForgotPassword";
+import AddChargePage from "./pages/NewValues"
+import EditChargePage from "./pages/EditChargePage";
 function App() {
   return (
     <Router>
@@ -14,8 +13,8 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route path="/New" element={<NewValues />}/>
-        <Route path="/Edit" element={<EditValues />}/>
+        <Route path="/New" element={<AddChargePage />}/>
+        <Route path="/Edit" element={<EditChargePage />}/>
       </Routes>
     </Router>
   );

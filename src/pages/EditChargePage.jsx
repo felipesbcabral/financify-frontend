@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import styles from "./New.module.css";
 
-
-function AddChargePage({ handleAddCharge }) {
+function EditValues({ handleAddCharge }) {
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
  const navigate = useNavigate();
@@ -31,10 +31,10 @@ function AddChargePage({ handleAddCharge }) {
  
  
   return (
-    <div>
-      <h2>Adicionar Valor</h2>
+    <div >
+      <h2>Editar valores</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.descricao}>
           <label htmlFor="description">Descrição:</label>
           <input
             type="text"
@@ -43,7 +43,7 @@ function AddChargePage({ handleAddCharge }) {
             onChange={handleDescriptionChange}
           />
         </div>
-        <div>
+        <div className={styles.valor}>
           <label htmlFor="value">Valor:</label>
           <input
             type="number"
@@ -52,13 +52,16 @@ function AddChargePage({ handleAddCharge }) {
             onChange={handleValueChange}
           />
         </div>
+        </form>
+        <div className={styles.meuelemento}>
+
+        <button onClick={handleClick}>Editar</button>
         <button onClick={handleClick}>Voltar</button>
 
-        <button onClick={handleClick}>Adicionar</button>
-       
-      </form>
+        </div>
+      
     </div>
   );
-}
-
-export default AddChargePage;
+  }
+  
+export default EditValues;

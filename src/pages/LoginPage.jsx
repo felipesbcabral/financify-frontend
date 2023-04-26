@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginPage.css"; // Importa o arquivo CSS
 import { Link } from "react-router-dom";
-
+import styles from "../pages/New.module.css"
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +29,6 @@ function LoginPage() {
         <img src='../src/assets/financify-logo.jpg' alt="Logo do Financify" />
       </div>
       <div className="title-container">
-        <h1>Financify</h1>
       </div>
       <form onSubmit={handleSubmit}>
         <label>
@@ -47,11 +46,12 @@ function LoginPage() {
         <Link to="Home  "><button className="log-in-button" type="submit">
           Entrar
         </button></Link>
+        <Link to="ForgotPassword"> <button className="log-in-button" onClick={handleForgotPassword}>Esqueci minha senha</button></Link>
+          <Link to="Register"><button className="log-in-button">Cadastre-se</button></Link>
       </form>
-      <div className="button-container">
-        <div className="button-wrapper">
-        <Link to="ForgotPassword"> <button onClick={handleForgotPassword}>Esqueci minha senha</button></Link>
-          <Link to="Register"><button>Cadastre-se</button></Link>
+      <div className={styles.botaoentrar}>
+        <div>
+        
         </div>
       </div>
     </div>
