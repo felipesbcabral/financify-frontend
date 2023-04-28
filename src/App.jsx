@@ -1,24 +1,42 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
+import HomePage from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import AddChargePage from "./pages/NewValues"
 import EditChargePage from "./pages/EditChargePage";
-function App() {
+
+export default function App() {
+  const [logado, setLogado] = useState(false);
+  const [userID, setUserID] = useState();
+  function handleLogin(event) {
+    setLogado(true);
+    setUserID(100);
+  }
+
+  function handleLogout(event) {
+    setLogado(false);
+    setUserID(null);
+  }
+
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route path="/New" element={<AddChargePage />}/>
-        <Route path="/Edit" element={<EditChargePage />}/>
+        {logado ? (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/edit" element={<EditChargePage />} />
+            <Route path="/new" element={<AddChargePage />} />
+          </>
+        ) : (
+          <>
+            <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+            <Route path="/forgot" element={<ForgotPassword />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </>
+        )}
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
-
-export default App;
-
