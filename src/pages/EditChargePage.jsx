@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import styles from "./New.module.css";
 
-function EditValues({ handleAddCharge }) {
+function EditValues(props) {
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
- const navigate = useNavigate();
-  function handleClick() { navigate('/Home'); }
- 
+  const navigate = useNavigate();
+
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
@@ -24,15 +22,23 @@ function EditValues({ handleAddCharge }) {
       value: parseFloat(value),
       date: new Date(),
     };
-    handleAddCharge(newCharge);
+    if (typeof props.handleAddCharge === 'function') {
+      props.handleAddCharge(newCharge);
+    }
     setDescription("");
     setValue("");
   };
- 
- 
+
+  function handleClick(event) {
+    if (typeof props.onLogin === 'function') {
+      props.onLogin(event)
+    }
+    navigate("/");
+  }
+
   return (
-    <div >
-      <h2>Editar valores</h2>
+    <div>
+      <h2 className={styles.title}>Editar Valores</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.descricao}>
           <label htmlFor="description">Descrição:</label>
@@ -52,16 +58,13 @@ function EditValues({ handleAddCharge }) {
             onChange={handleValueChange}
           />
         </div>
-        </form>
-        <div className={styles.meuelemento}>
-
-        <button onClick={handleClick}>Editar</button>
+      </form>
+      <div className={styles.meuelemento}>
+        <button onClick={handleSubmit}>Editar</button>
         <button onClick={handleClick}>Voltar</button>
-
-        </div>
-      
+      </div>
     </div>
   );
-  }
-  
+}
+
 export default EditValues;

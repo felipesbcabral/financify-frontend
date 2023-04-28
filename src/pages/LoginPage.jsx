@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./LoginPage.css"; // Importa o arquivo CSS
-import { Link } from "react-router-dom";
-import styles from "../pages/New.module.css"
-function LoginPage() {
+import styles from "../pages/New.module.css";
+import { useNavigate } from "react-router-dom";
+
+function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -14,9 +16,18 @@ function LoginPage() {
     setPassword(event.target.value);
   };
 
+  const handleEmailClick = (event) => {
+    navigate("/register");
+  };
+
+  const handlePasswordClick = (event) => {
+    navigate("/forgot");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Coloque aqui a lógica de autenticação
+    props.onLogin(email, password);
+    navigate("/");
   };
 
   const handleForgotPassword = () => {
@@ -26,10 +37,9 @@ function LoginPage() {
   return (
     <div className="login-page">
       <div className="logo-container">
-        <img src='../src/assets/financify-logo.jpg' alt="Logo do Financify" />
+        <img src="../src/assets/financify-logo.jpg" alt="Logo do Financify" />
       </div>
-      <div className="title-container">
-      </div>
+      <div className="title-container"></div>
       <form onSubmit={handleSubmit}>
         <label>
           E-mail:
@@ -43,16 +53,18 @@ function LoginPage() {
             onChange={handlePasswordChange}
           />
         </label>
-        <Link to="Home  "><button className="log-in-button" type="submit">
+        <button className="log-in-button" type="submit">
           Entrar
-        </button></Link>
-        <Link to="ForgotPassword"> <button className="log-in-button" onClick={handleForgotPassword}>Esqueci minha senha</button></Link>
-          <Link to="Register"><button className="log-in-button">Cadastre-se</button></Link>
+        </button>
+        <button className="log-in-button" onClick={handlePasswordClick}>
+          Esqueci minha senha
+        </button>
+        <button className="log-in-button" onClick={handleEmailClick}>
+          Cadastre-se
+        </button>
       </form>
       <div className={styles.botaoentrar}>
-        <div>
-        
-        </div>
+        <div></div>
       </div>
     </div>
   );

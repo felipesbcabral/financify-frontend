@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "../components/Home.css"; // Importe seu arquivo CSS aqui
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const navigate = useNavigate();
 
-  function handleClick() {
-    navigate("/Dashboard");
-  }
+  function handleClick(event){
+    props.onLogin(event)
+    navigate("/home");
+}
 
   const [datePickerVisible, setDatePickerVisible] = useState(false); // estado que controla a visibilidade do calendário
   const [startDate, setStartDate] = useState(new Date());

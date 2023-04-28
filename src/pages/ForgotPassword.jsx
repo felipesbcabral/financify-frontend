@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ForgotPassword.css"; // Importe o arquivo de estilos
 import { Link } from "react-router-dom";
 
-const EsqueciSenha = () => {
+const EsqueciSenha = (props) => {
   const [nomeUsuario, setNomeUsuario] = useState("");
   const [email, setEmail] = useState("");
 

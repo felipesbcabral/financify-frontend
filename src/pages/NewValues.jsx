@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import styles from "./New.module.css";
 
@@ -7,7 +6,7 @@ function NewValues({ handleAddCharge }) {
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
  const navigate = useNavigate();
-  function handleClick() { navigate('/Home'); }
+  function handleClick() { navigate('/'); }
  
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
@@ -32,7 +31,7 @@ function NewValues({ handleAddCharge }) {
  
   return (
     <div >
-      <h2>Adicionar Valores</h2>
+      <h2 className={styles.title}>Adicionar Valores</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.descricao}>
           <label htmlFor="description">Descrição:</label>
