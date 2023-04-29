@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import AddChargePage from "./pages/NewValues"
 import EditChargePage from "./pages/EditChargePage";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   const [logado, setLogado] = useState(false);
@@ -22,6 +23,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+    <Navbar />
       <Routes>
         {logado ? (
           <>

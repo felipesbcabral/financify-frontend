@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "../components/Home.css"; // Importe seu arquivo CSS aqui
 import styles from "./New.module.css"
+
 const Dashboard = (props) => {
   const navigate = useNavigate();
 
