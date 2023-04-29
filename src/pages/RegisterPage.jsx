@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./New.module.css";
+import "./CadastroUsuarios.css";
 
 const CadastroUsuarios = () => {
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -21,8 +23,8 @@ const CadastroUsuarios = () => {
 
   return (
     <div className="container">
-      <h1>Cadastro de Usuários</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className={styles.title}>Cadastro de Usuários</h1>
+      <form onSubmit={handleSubmit} className="form-cadastro">
         <div className="form-group">
           <label htmlFor="nomeUsuario">Nome de Usuário:</label>
           <input
@@ -51,12 +53,16 @@ const CadastroUsuarios = () => {
           />
         </div>
         <div className="button-container">
-         <Link to="/"><button type="submit" className="btn-cadastrar">
-            Cadastrar
-          </button></Link>
-          <Link to="/"><button type="button" className="btn-voltar">
-            Voltar
-          </button></Link>
+          <Link to="/" className="link-cadastrar">
+            <button type="submit" className="btn-cadastrar">
+              Cadastrar
+            </button>
+          </Link>
+          <Link to="/" className="link-voltar">
+            <button type="button" className="btn-voltar">
+              Voltar
+            </button>
+          </Link>
         </div>
       </form>
     </div>

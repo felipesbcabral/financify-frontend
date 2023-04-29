@@ -5,14 +5,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "../components/Home.css"; // Importe seu arquivo CSS aqui
-
+import styles from "./New.module.css"
 const Dashboard = (props) => {
   const navigate = useNavigate();
 
-  function handleClick(event){
+  function handleClick(event) {
     props.onLogin(event)
     navigate("/home");
-}
+  }
 
   const [datePickerVisible, setDatePickerVisible] = useState(false); // estado que controla a visibilidade do calendário
   const [startDate, setStartDate] = useState(new Date());
@@ -64,69 +64,69 @@ const Dashboard = (props) => {
   };
 
   return (
-      <div className="dashboard-table-container">
-        <div>
-          <button onClick={() => setDatePickerVisible(!datePickerVisible)}>
-            Selecionar datas
-          </button>{" "}
-          {/* botão que controla a visibilidade do calendário */}
-          {datePickerVisible && ( // calendário que só aparece quando a variável datePickerVisible é true
-            <DatePicker
-              selected={startDate}
-              onChange={handleDateRangeChange}
-              startDate={startDate}
-              endDate={endDate}
-              selectsRange
-              inline
-            />
-          )}
-        </div>
-        <br />
-        <div>
-          <Table striped bordered hover className="dashboard-table">
-            <thead>
-              <tr>
-                <th id="id">ID</th>
-                <th id="description">Descrição</th>
-                <th id="value">Valor</th>
-                <th id="date">Data</th>
-                <th id="actions">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredCharges.map((charge) => (
-                <tr key={charge.id}>
-                  <td>{charge.id}</td>
-                  <td>{charge.description}</td>
-                  <td>R$ {charge.value}</td>
-                  <td>{formatDate(charge.date)}</td>
-                  <td>
-                    {" "}
-                    <button
-                      className="edit-button"
-                      onClick={() => handleEditCharge(charge.id)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="delete-button"
-                      onClick={() => handleDeleteCharge(charge.id)}
-                    >
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
-        <br/>
-        <div>
-          <NavLink className="nav-link" to="/New">
-            Adicionar
-          </NavLink>
-        </div>
+    <div className="dashboard-table-container">
+      <div>
+        <button className={styles.calender} onClick={() => setDatePickerVisible(!datePickerVisible)}>
+          Selecionar datas
+        </button>{" "}
+        {/* botão que controla a visibilidade do calendário */}
+        {datePickerVisible && ( // calendário que só aparece quando a variável datePickerVisible é true
+          <DatePicker
+            selected={startDate}
+            onChange={handleDateRangeChange}
+            startDate={startDate}
+            endDate={endDate}
+            selectsRange
+            inline
+          />
+        )}
       </div>
+      <br />
+      <div>
+        <Table striped bordered hover size="sm" className="table-without-bg">
+          <thead>
+            <tr>
+              <th id="id">ID</th>
+              <th id="description">Descrição</th>
+              <th id="value">Valor</th>
+              <th id="date">Data</th>
+              <th id="actions">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredCharges.map((charge) => (
+              <tr key={charge.id}>
+                <td>{charge.id}</td>
+                <td>{charge.description}</td>
+                <td>R$ {charge.value}</td>
+                <td>{formatDate(charge.date)}</td>
+                <td>
+                  {" "}
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEditCharge(charge.id)}
+                  >
+                    Editar
+                  </button>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteCharge(charge.id)}
+                  >
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+      <br />
+      <div>
+        <NavLink className={styles.addHome} to="/New">
+          Adicionar
+        </NavLink>
+      </div>
+    </div>
   );
 };
 export default Dashboard;
