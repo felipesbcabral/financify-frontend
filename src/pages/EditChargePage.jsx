@@ -17,6 +17,7 @@ function EditValues(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     const newCharge = {
       description,
       value: parseFloat(value),
@@ -60,7 +61,7 @@ function EditValues(props) {
         </div>
       </form>
       <div className={styles.meuelemento}>
-        <button onClick={handleSubmit}>Editar</button>
+        <button onClick={handleClick}>Editar</button>
         <button onClick={handleClick}>Voltar</button>
       </div>
     </div>
