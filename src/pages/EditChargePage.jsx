@@ -38,21 +38,23 @@ function EditValues(props) {
   }
 
   return (
-    <div>
+    
+    <div >
       <h2 className={styles.title}>Editar Valores</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.descricao}>
           <label htmlFor="description">Descrição:</label>
-          <input
+          <input className={styles.inputtext}
             type="text"
             id="description"
             value={description}
             onChange={handleDescriptionChange}
           />
         </div>
+        
         <div className={styles.valor}>
           <label htmlFor="value">Valor:</label>
-          <input
+          <input className={styles.inputtext}
             type="number"
             id="value"
             value={value}
@@ -61,10 +63,11 @@ function EditValues(props) {
         </div>
       </form>
       <div className={styles.meuelemento}>
-        <button onClick={handleClick}>Editar</button>
-        <button onClick={handleClick}>Voltar</button>
+      <button className={styles.btnadd} onClick={handleClick}>EDITAR</button>
+        <button className={styles.btnback}  onClick={handleClick}>VOLTAR</button>
       </div>
     </div>
+    
   );
 }
 

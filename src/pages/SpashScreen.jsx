@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import logo from './financify-logo.jpg';
+import { useNavigate } from 'react-router-dom';
+import logo from '../assets/financify-logo.jpg';
 
 function SplashScreen() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      history.push('/login');
+      navigate('/login');
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [history]);
+  }, [navigate]);
 
   return (
     <div className="splash-container">
       <img src={logo} alt="Financify Logo" />
-      <h1>Financify</h1>
+     
     </div>
   );
 }

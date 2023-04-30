@@ -15,13 +15,7 @@ form {
 
 label {
   margin: 0.5rem 0;
-}
-
-input {
-  margin-left: 0.5rem;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
+  
 }
 
 .buttons-container {
@@ -60,7 +54,22 @@ body {
 
 .log-in-button {
   margin-top: 10px;
+  background-color: #461bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+color: white;
+cursor: pointer;
+padding: 8px 16px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 14px;
+margin: 4px 2px;
+border-radius: 5px;
+
 }
+
 
 .logo-container {
   display: flex;
@@ -74,4 +83,12 @@ body {
   justify-content: center;
   margin-top: 10rem;
   margin-left: 100px;
+}
+
+.inputlogin{
+  margin-left: .5rem;
+padding: .5rem;
+border: none;
+border-radius: 5px;
+size: 100%;
 }

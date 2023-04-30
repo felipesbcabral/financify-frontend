@@ -1,104 +1,126 @@
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 5;
-    right: 5px;
-    height: 100vh;
-    width: 320px;
-    background-color: #fff;
-    transform: translateX(-320px);
-    transition: transform 0.3s ease-in-out;
-  
-    &.active {
-      transform: translateX(0);
-    }
-  
-    &__logo {
-      display: grid;
-      place-items: center;
-      height: 120px;
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-family: 'Mochiy Pop P one', sans-serif;
-    }
-  
-    &__menu {
-      position: absolute;
-  
-      &__item {
-        display: flex;
-        align-items: center;
-        place-content: flex-start;
-        padding: 1rem 3rem;
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: #555555;
-        transition: color 0.3s ease-in-out;
-  
-        &.active {
-          color: #fff;
-        }
-  
-        &__icon {
-          margin-right: 1rem;
-  
-          i {
-            font-size: 1.75rem;
-          }
-        }
-      }
-  
-      &__indicator {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: calc(100% - 40px);
-        border-radius: 10px;
-        background-color: #308efe;
-        z-index: -1;
-        transform: translateX(-50%);
-        transition: 0.3s ease-in-out;
-      }
-    }
-  
-    &__toggle,
-    &__hide {
-      position: absolute;
-      top: 0;
-      right: -30px;
-      background-color: #308efe;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 1.25rem;
-      z-index: 1;
-      cursor: pointer;
-      transition: right 0.3s ease-in-out;
-  
-      &:hover {
-        right: 0;
-      }
-    }
-  
-    &__toggle {
-      left: -100px;
-      border-radius: 0 10px 10px 0;
-      display: none;
-  
-      & + & {
-        margin-top: 1rem;
-      }
-    }
-  
-    &__hide {
-      left: 0;
-      border-radius: 10px  20px 10px;
-  
-      i {
-        font-size: 1.5rem;
-      }
-    }
-  
+  width: 5rem;
+  height: 100%;
+  background-color: #252525;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
 
+  &.active {
+    width: 15rem;
+
+    .sidebar__menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
   }
-  
+
+  &.hidden {
+    width: 5rem;
+  }
+
+  &__toggle {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 5rem;
+    width: 5rem;
+    transition: width 0.3s ease-in-out;
+
+    &.visible {
+      width: 5rem;
+    }
+  }
+
+  &__hide {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 5rem;
+    width: 5rem;
+    transition: width 0.3s ease-in-out;
+  }
+
+  &__menu {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    height: calc(100% - 5rem);
+    width: 15rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__menu__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.5rem;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 0 1rem 1rem 0;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &__menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  &__menu__item {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    padding: 0 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &__icon {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+
+    &__text {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}
+.teste {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  cursor: pointer;
+  color: #fff;
+}
+

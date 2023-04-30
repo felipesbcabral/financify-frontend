@@ -43,11 +43,11 @@ function LoginPage(props) {
       <form onSubmit={handleSubmit}>
         <label>
           E-mail:
-          <input type="email" value={email} onChange={handleEmailChange} />
+          <input className={styles.inputlogin} type="email" value={email} onChange={handleEmailChange} />
         </label>
         <label>
           Senha:
-          <input
+          <input className={styles.inputlogin}
             type="password"
             value={password}
             onChange={handlePasswordChange}
