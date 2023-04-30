@@ -53,12 +53,12 @@ const CadastroUsuarios = () => {
           />
         </div>
         <div className="button-container">
-          <Link to="/" className="link-cadastrar">
+          <Link to="/login" className="link-cadastrar">
             <button type="submit" className="btn-cadastrar">
               Cadastrar
             </button>
           </Link>
-          <Link to="/" className="link-voltar">
+          <Link to="/login" className="link-voltar">
             <button type="button" className="btn-voltar">
               Voltar
             </button>

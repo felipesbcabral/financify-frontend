@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./ForgotPassword.css"; // Importe o arquivo de estilos
 import { Link } from "react-router-dom";
 import styles from "./New.module.css";
-
+import "./EsqueciSenha.css"; // <--- Adicione essa linha
 
 const EsqueciSenha = (props) => {
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -22,32 +21,38 @@ const EsqueciSenha = (props) => {
   };
 
   return (
-    <div className="esqueci-senha-container">
+    <div className="container">
       <h1 className={styles.title}>Esqueci a Senha</h1>
-      <form onSubmit={handleSubmit} className="esqueci-senha-form">
-        <label htmlFor="nomeUsuario">Nome de Usuário:</label>
-        <input
-          type="text"
-          id="nomeUsuario"
-          value={nomeUsuario}
-          onChange={(e) => setNomeUsuario(e.target.value)}
-        />
-        <br />
-        <label htmlFor="email">E-mail:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <div className="esqueci-senha-buttons">
-        <Link to="/login"> <button type="submit" className="esqueci-senha-enviar">
-            Enviar
-          </button></Link>
-          <Link to="/login"> <button type="button" className="esqueci-senha-voltar">
-            Voltar
-          </button></Link>
+      <form onSubmit={handleSubmit} className="form-cadastro">
+        <div className="form-group">
+          <label htmlFor="nomeUsuario">Nome de Usuário:</label>
+          <input
+            type="text"
+            id="nomeUsuario"
+            value={nomeUsuario}
+            onChange={(e) => setNomeUsuario(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="button-container">
+          <Link to="/login">
+            <button type="submit" className="btn-cadastrar">
+              Enviar
+            </button>
+          </Link>
+          <Link to="/login " className="link-voltar">
+            <button type="button" className="btn-voltar">
+              Voltar
+            </button>
+          </Link>
         </div>
       </form>
     </div>

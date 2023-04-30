@@ -51,7 +51,8 @@ const Dashboard = (props) => {
   };
 
   const handleDeleteCharge = (id) => {
-    navigate("/Delete");
+    const updatedCharges = charges.filter((charge) => charge.id !== id);
+    setCharges(updatedCharges);
   };
 
   const filteredCharges = charges.filter((charge) => {
@@ -67,7 +68,7 @@ const Dashboard = (props) => {
   return (
     <div className="dashboard-table-container">
       <div>
-        <button className={styles.calender} onClick={() => setDatePickerVisible(!datePickerVisible)}>
+        <button className={styles.btnadd} onClick={() => setDatePickerVisible(!datePickerVisible)}>
           Selecionar datas
         </button>{" "}
         {/* botão que controla a visibilidade do calendário */}
@@ -104,13 +105,13 @@ const Dashboard = (props) => {
                 <td>
                   {" "}
                   <button
-                    className="edit-button"
+                    className={styles.btnadd}
                     onClick={() => handleEditCharge(charge.id)}
                   >
                     Editar
                   </button>
                   <button
-                    className="delete-button"
+                    className={styles.btnback}
                     onClick={() => handleDeleteCharge(charge.id)}
                   >
                     Excluir
@@ -123,7 +124,7 @@ const Dashboard = (props) => {
       </div>
       <br />
       <div>
-        <NavLink className={styles.addHome} to="/New">
+        <NavLink className={styles.btnadd} to="/New">
           Adicionar
         </NavLink>
       </div>

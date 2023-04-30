@@ -35,7 +35,7 @@ function NewValues({ handleAddCharge }) {
       <form onSubmit={handleSubmit}>
         <div className={styles.descricao}>
           <label htmlFor="description">Descrição:</label>
-          <input
+          <input className={styles.inputtext}
             type="text"
             id="description"
             value={description}
@@ -44,7 +44,7 @@ function NewValues({ handleAddCharge }) {
         </div>
         <div className={styles.valor}>
           <label htmlFor="value">Valor:</label>
-          <input
+          <input className={styles.inputtext}
             type="number"
             id="value"
             value={value}
@@ -54,8 +54,8 @@ function NewValues({ handleAddCharge }) {
         </form>
         <div className={styles.meuelemento}>
 
-        <button onClick={handleClick}>Adicionar</button>
-        <button onClick={handleClick}>Voltar</button>
+        <button className={styles.btnadd} onClick={handleClick}>Adicionar</button>
+        <button className={styles.btnback}  onClick={handleClick}>Voltar</button>
 
         </div>
       
