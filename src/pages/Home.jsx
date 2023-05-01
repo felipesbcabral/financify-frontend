@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import "../components/Home.css"; // Importe seu arquivo CSS aqui
-import styles from "./New.module.css"
+import "../Styles/Home.css"; // Importe seu arquivo CSS aqui
+import styles from "../Styles/New.module.css"
 
 const Dashboard = (props) => {
   const navigate = useNavigate();

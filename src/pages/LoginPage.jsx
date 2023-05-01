@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./LoginPage.css"; // Importa o arquivo CSS
-import styles from "../pages/New.module.css";
+import "../Styles/LoginPage.css"; // Importa o arquivo CSS
+import styles from "../Styles/New.module.css";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage(props) {

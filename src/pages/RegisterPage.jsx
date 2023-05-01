@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./New.module.css";
-import "./CadastroUsuarios.css";
+import styles from "../Styles/New.module.css";
+import "../Styles/CadastroUsuarios.css";
 
 const CadastroUsuarios = () => {
   const [nomeUsuario, setNomeUsuario] = useState("");

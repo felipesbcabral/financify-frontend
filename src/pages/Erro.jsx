@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import styles from '../pages/New.module.css';
+import styles from "../Styles/New.module.css";
 function ErrorPage() {
   const navigate = useNavigate();
 
