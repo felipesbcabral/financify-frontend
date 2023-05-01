@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import styles from "./New.module.css";
+import styles from "../Styles/New.module.css";
 
 function EditValues(props) {
   const [description, setDescription] = useState("");

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./New.module.css";
-import "./EsqueciSenha.css"; // <--- Adicione essa linha
+import styles from "../Styles/New.module.css";
+import "../Styles/EsqueciSenha.css"; // <--- Adicione essa linha
 
 const EsqueciSenha = (props) => {
   const [nomeUsuario, setNomeUsuario] = useState("");

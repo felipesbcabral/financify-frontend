@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './Navbar.scss';
+import '../Styles/Navbar.scss';
 import { FaBars, FaSignOutAlt } from 'react-icons/fa';
 
 const Sidebar = (props) => {
