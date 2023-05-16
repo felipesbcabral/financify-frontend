@@ -66,9 +66,9 @@ const Dashboard = (props) => {
   };
 
   return (
-    <div className="dashboard-table-container">
+    <div>
       <div>
-        <button className={styles.btnadd} onClick={() => setDatePickerVisible(!datePickerVisible)}>
+        <button className={styles.calender} onClick={() => setDatePickerVisible(!datePickerVisible)}>
           Selecionar datas
         </button>{" "}
         {/* botão que controla a visibilidade do calendário */}
@@ -84,51 +84,54 @@ const Dashboard = (props) => {
         )}
       </div>
       <br />
-      <div>
-        <Table striped bordered hover size="sm" className="table-without-bg">
-          <thead>
-            <tr>
-              <th id="id">ID</th>
-              <th id="description">Descrição</th>
-              <th id="value">Valor</th>
-              <th id="date">Data</th>
-              <th id="actions">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredCharges.map((charge) => (
-              <tr key={charge.id}>
-                <td>{charge.id}</td>
-                <td>{charge.description}</td>
-                <td>R$ {charge.value}</td>
-                <td>{formatDate(charge.date)}</td>
-                <td>
-                  {" "}
-                  <button
-                    className={styles.btnadd}
-                    onClick={() => handleEditCharge(charge.id)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    className={styles.btnback}
-                    onClick={() => handleDeleteCharge(charge.id)}
-                  >
-                    Excluir
-                  </button>
-                </td>
+      <div className="dashboard-table-container">
+        <div>
+          <Table striped bordered hover size="sm" className="table-without-bg">
+            <thead>
+              <tr>
+                <th id="id">ID</th>
+                <th id="description">Descrição</th>
+                <th id="value">Valor</th>
+                <th id="date">Data</th>
+                <th id="actions">Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
-      <br />
-      <div>
-        <NavLink className={styles.btnadd} to="/New">
-          Adicionar
-        </NavLink>
+            </thead>
+            <tbody>
+              {filteredCharges.map((charge) => (
+                <tr key={charge.id}>
+                  <td>{charge.id}</td>
+                  <td>{charge.description}</td>
+                  <td>R$ {charge.value}</td>
+                  <td>{formatDate(charge.date)}</td>
+                  <td>
+                    {" "}
+                    <button
+                      className={styles.btnadd}
+                      onClick={() => handleEditCharge(charge.id)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className={styles.btnback}
+                      onClick={() => handleDeleteCharge(charge.id)}
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+        <br />
+        <div>
+          <NavLink className={styles.btnadd} to="/New">
+            Adicionar
+          </NavLink>
+        </div>
       </div>
     </div>
   );
+  
 };
 export default Dashboard;

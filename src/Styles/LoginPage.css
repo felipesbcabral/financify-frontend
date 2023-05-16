@@ -1,7 +1,7 @@
 .login-page {
   display: flex;
-  flex-direction: row;
-  justify-content: space;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   height: 100vh;
 }
@@ -15,7 +15,6 @@ form {
 
 label {
   margin: 0.5rem 0;
-  
 }
 
 .buttons-container {
@@ -49,7 +48,7 @@ body {
 }
 
 .button-wrapper button {
-  margin-bottom: 100px;
+  margin-bottom: 2rem;
 }
 
 .log-in-button {
@@ -58,18 +57,16 @@ body {
   color: #fff;
   padding: 10px;
   border: none;
-color: white;
-cursor: pointer;
-padding: 8px 16px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 14px;
-margin: 4px 2px;
-border-radius: 5px;
-
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  border-radius: 5px;
 }
-
 
 .logo-container {
   display: flex;
@@ -81,14 +78,15 @@ border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10rem;
-  margin-left: 100px;
+  margin-top: 10vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
 }
 
-.inputlogin{
+.inputlogin {
   margin-left: .5rem;
-padding: .5rem;
-border: none;
-border-radius: 5px;
-size: 100%;
+  padding: .5rem;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
 }
