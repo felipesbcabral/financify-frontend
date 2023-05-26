@@ -8,7 +8,7 @@ function ErrorPage() {
   }
 
   function handleLogin() {
-    navigate('/splash');
+    navigate('/login');
   }
 
   return (
