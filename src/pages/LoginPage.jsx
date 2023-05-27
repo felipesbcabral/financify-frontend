@@ -21,8 +21,11 @@ function LoginPage({ onLogin }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await authContext.login(email, password);
-    onLogin(event);
-    navigate("/");
+    
+    if (authContext.authenticated) {
+      onLogin(event);
+      navigate("/");
+    }
   };
 
   const handleForgotPassword = () => {
@@ -60,6 +63,9 @@ function LoginPage({ onLogin }) {
             required
           />
         </div>
+        {authContext.error && (
+          <div className="error-message">{authContext.error}</div> // Exibe a mensagem de erro, se houver
+        )}
         <div className="button-container">
           <button type="submit" className="log-in-button">
             Entrar
