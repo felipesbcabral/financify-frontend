@@ -6,24 +6,28 @@ export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [error, setError] = useState(null); // Adicionado estado para armazenar o erro
+  const [error, setError] = useState(null);
 
   const login = async (email, password) => {
     try {
       const response = await axios.post("http://localhost:5294/v1/login", {
-        Username: email,
+        Email: email,
         Password: password,
       });
-      const { user, token } = response.data;
+      const { account, token } = response.data;
 
       setAuthenticated(true);
-      setUserId(user.Id);
-      setError(null); // Limpa o erro caso ocorra um login bem-sucedido
+      setUserId(account.Id);
+      setError(null);
     } catch (error) {
-      if (error.response && error.response.status === 404) {
-        setError("Usuário ou senha inválidos"); // Define a mensagem de erro personalizada
+      if (error.response && error.response.data) {
+        if (error.response.status === 400) {
+          setError(error.response.data);
+        } else {
+          setError(error.response.data.message);
+        }
       } else {
-        setError("Ocorreu um erro ao realizar o login"); // Define uma mensagem de erro genérica
+        setError("Ocorreu um erro ao realizar o login");
       }
     }
   };
@@ -31,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setAuthenticated(false);
     setUserId(null);
-    setError(null); // Limpa o erro ao fazer logout
+    setError(null);
   };
 
   const authContextValue = {
@@ -39,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     userId,
     login,
     logout,
-    error, // Adiciona o estado de erro ao contexto
+    error,
   };
 
   return (

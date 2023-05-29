@@ -2,22 +2,37 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../Styles/New.module.css";
 import "../Styles/CadastroUsuarios.css";
+import axios from "axios";
 
 const CadastroUsuarios = () => {
   const [nomeUsuario, setNomeUsuario] = useState("");
   const [senha, setSenha] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aqui você pode adicionar a lógica para validar os dados do usuário e realizar o cadastro
 
-    // Exemplo de validação simples apenas para fins ilustrativos
-    if (nomeUsuario === "" || senha === "" || email === "") {
-      alert("Por favor, preencha todos os campos.");
-    } else {
-      // Realizar o cadastro do usuário
+    try {
+      const response = await axios.post(
+        "http://localhost:5294/v1/Account",
+        {
+          NomeUsuario: nomeUsuario,
+          Senha: senha,
+          Email: email,
+        }
+      );
+
+      // Aqui você pode tratar a resposta do servidor, se necessário
+      console.log(response.data);
+
       alert("Usuário cadastrado com sucesso!");
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setError(error.response.data);
+      } else {
+        setError("Ocorreu um erro ao cadastrar o usuário");
+      }
     }
   };
 
@@ -52,12 +67,11 @@ const CadastroUsuarios = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+        {error && <div className="error-message">{error}</div>}
         <div className="button-container">
-          <Link to="/login" className="link-cadastrar">
-            <button type="submit" className="btn-cadastrar">
-              Cadastrar
-            </button>
-          </Link>
+          <button type="submit" className="btn-cadastrar">
+            Cadastrar
+          </button>
           <Link to="/login" className="link-voltar">
             <button type="button" className="btn-voltar">
               Voltar
