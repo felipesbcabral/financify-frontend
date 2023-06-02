@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import styles from "../Styles/New.module.css";
 
-function NewValues({ handleAddCharge }) {
+const NewValues = ({ handleAddCharge }) => {
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
- const navigate = useNavigate();
-  function handleClick() { navigate('/'); }
- 
+  const navigate = useNavigate();
+
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
@@ -19,23 +18,31 @@ function NewValues({ handleAddCharge }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newCharge = {
+      id: Date.now(),
       description,
+      dueDate: "", // Fill in with appropriate due date value
       value: parseFloat(value),
-      date: new Date(),
+      status: "", // Fill in with appropriate status value
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
     handleAddCharge(newCharge);
     setDescription("");
     setValue("");
   };
- 
- 
+
+  const handleClick = () => {
+    navigate("/");
+  };
+
   return (
-    <div >
+    <div>
       <h2 className={styles.title}>Adicionar Valores</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.descricao}>
           <label htmlFor="description">Descrição:</label>
-          <input className={styles.inputtext}
+          <input
+            className={styles.inputtext}
             type="text"
             id="description"
             value={description}
@@ -44,23 +51,25 @@ function NewValues({ handleAddCharge }) {
         </div>
         <div className={styles.valor}>
           <label htmlFor="value">Valor:</label>
-          <input className={styles.inputtext}
+          <input
+            className={styles.inputtext}
             type="number"
             id="value"
             value={value}
             onChange={handleValueChange}
           />
         </div>
-        </form>
         <div className={styles.meuelemento}>
-
-        <button className={styles.btnadd} onClick={handleClick}>Adicionar</button>
-        <button className={styles.btnback}  onClick={handleClick}>Voltar</button>
-
+          <button className={styles.btnadd} type="submit">
+            Salvar
+          </button>
+          <button className={styles.btnback} onClick={handleClick}>
+            Voltar
+          </button>
         </div>
-      
+      </form>
     </div>
   );
-  }
-  
+};
+
 export default NewValues;

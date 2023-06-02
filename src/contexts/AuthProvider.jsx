@@ -38,11 +38,30 @@ export const AuthProvider = ({ children }) => {
     setError(null);
   };
 
+  const updateCharge = async (chargeId, updatedCharge) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5294/v1/charge/${chargeId}`,
+        updatedCharge
+      );
+      // Lógica adicional após a atualização da cobrança (charge), se necessário...
+
+      setError(null);
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setError(error.response.data.message);
+      } else {
+        setError("Ocorreu um erro ao atualizar a cobrança");
+      }
+    }
+  };
+
   const authContextValue = {
     authenticated,
     userId,
     login,
     logout,
+    updateCharge,
     error,
   };
 

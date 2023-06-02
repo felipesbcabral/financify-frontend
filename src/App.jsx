@@ -14,6 +14,7 @@ import Config from "./pages/config";
 import HelpPage from "./pages/support";
 import DataPage from "./pages/dados";
 import PrivacyPage from "./pages/privacidade";
+import ErrorPage from "./pages/Erro";
 
 export default function App() {
   const [logado, setLogado] = useState(false);
@@ -33,20 +34,7 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {logado ? (
-            <Route
-              path="/"
-              element={<Layout id={userID} onLogout={handleLogout} />}
-            >
-              <Route index element={<HomePage />} />
-              <Route path="/new" element={<AddChargePage />} />
-              <Route path="/edit" element={<EditChargePage />} />
-              <Route path="/config" element={<Config />} />
-              <Route path="/ajuda" element={<HelpPage />} />
-              <Route path="/dados" element={<DataPage />} />
-              <Route path="/privacidade" element={<PrivacyPage />} />
-            </Route>
-          ) : (
+          {!logado ? (
             <>
               <Route
                 path="/login"
@@ -55,7 +43,22 @@ export default function App() {
               <Route path="/forgot" element={<ForgotPassword />} />
               <Route path="/register" element={<RegisterPage />} />
             </>
+          ) : (
+            <Route
+              path="/"
+              element={<Layout id={userID} onLogout={handleLogout} />}
+            >
+              <Route index element={<HomePage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/new" element={<AddChargePage />} />
+              <Route path="/edit" element={<EditChargePage />} />
+              <Route path="/config" element={<Config />} />
+              <Route path="/ajuda" element={<HelpPage />} />
+              <Route path="/dados" element={<DataPage />} />
+              <Route path="/privacidade" element={<PrivacyPage />} />
+            </Route>
           )}
+          <Route path="*" element={<ErrorPage />} /> // Adicione esta rota para lidar com páginas não encontradas
         </Routes>
       </AuthProvider>
     </BrowserRouter>

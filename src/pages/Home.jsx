@@ -1,44 +1,36 @@
 import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import "../Styles/Home.css"; // Importe seu arquivo CSS aqui
-import styles from "../Styles/New.module.css"
+import "../Styles/Home.css";
 
-const Dashboard = (props) => {
-  const navigate = useNavigate();
-
-  function handleClick(event) {
-    props.onLogin(event)
-    navigate("/home");
-  }
-
-  const [datePickerVisible, setDatePickerVisible] = useState(false); // estado que controla a visibilidade do calendário
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [balance, setBalance] = useState(1200);
-  const [charges, setCharges] = useState([
+const Home = () => {
+  const [datePickerVisible, setDatePickerVisible] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [billingData, setBillingData] = useState([
     {
       id: 1,
-      description: "Conta de luz",
-      value: 120,
-      date: new Date(),
+      description: "Cobrança 1",
+      dueDate: "2023-06-10",
+      value: 100.0,
+      status: "Pendente",
+      createdAt: "2023-06-01 10:00:00",
+      updatedAt: "2023-06-01 10:00:00",
     },
     {
       id: 2,
-      description: "Conta de água",
-      value: 90,
-      date: new Date(),
+      description: "Cobrança 2",
+      dueDate: "2023-06-15",
+      value: 150.0,
+      status: "Pago",
+      createdAt: "2023-06-02 14:30:00",
+      updatedAt: "2023-06-02 14:30:00",
     },
-    {
-      id: 3,
-      description: "Aluguel",
-      value: 900,
-      date: new Date(),
-    },
+    // Add more billing data as needed
   ]);
+  const navigate = useNavigate();
 
   const handleDateRangeChange = (dates) => {
     const [start, end] = dates;
@@ -46,56 +38,50 @@ const Dashboard = (props) => {
     setEndDate(end);
   };
 
-  const handleEditCharge = (id) => {
-    navigate("/edit");
+  const formatDate = (dateString) => {
+    // Implement your date formatting logic here
+    return dateString;
   };
 
-  const handleDeleteCharge = (id) => {
-    const updatedCharges = charges.filter((charge) => charge.id !== id);
-    setCharges(updatedCharges);
+  const handleEditCharge = (chargeId) => {
+    navigate(`/Edit`);
   };
 
-  const filteredCharges = charges.filter((charge) => {
-    const chargeDate = new Date(charge.date);
-    return chargeDate >= startDate && chargeDate <= endDate;
-  });
-
-  const formatDate = (date) => {
-    const options = { year: "numeric", month: "short", day: "numeric" };
-    return new Date(date).toLocaleDateString("pt-BR", options);
+  const handleDeleteCharge = (chargeId) => {
+    // Implement your logic to handle delete charge action
   };
+
+  const handleAddCharge = (newCharge) => {
+    const updatedBillingData = [...billingData, newCharge];
+    setBillingData(updatedBillingData);
+    navigate("/");
+  };
+
+  const filteredCharges = []; // Add your logic to filter charges based on selected date range
 
   return (
     <div>
-      <div>
-        <button className={styles.calender} onClick={() => setDatePickerVisible(!datePickerVisible)}>
-          Selecionar datas
-        </button>{" "}
-        {/* botão que controla a visibilidade do calendário */}
-        {datePickerVisible && ( // calendário que só aparece quando a variável datePickerVisible é true
-          <DatePicker
-            selected={startDate}
-            onChange={handleDateRangeChange}
-            startDate={startDate}
-            endDate={endDate}
-            selectsRange
-            inline
-          />
-        )}
-      </div>
-      <br />
-      <div className="dashboard-table-container">
+      <div className="d-flex align-items-center mb-4">
         <div>
-          <Table striped bordered hover size="sm" className="table-without-bg">
-            <thead>
-              <tr>
-                <th id="id">ID</th>
-                <th id="description">Descrição</th>
-                <th id="value">Valor</th>
-                <th id="date">Data</th>
-                <th id="actions">Ações</th>
-              </tr>
-            </thead>
+          <button
+            className="add-button"
+            onClick={() => setDatePickerVisible(!datePickerVisible)}
+          >
+            Selecionar datas
+          </button>{" "}
+          {datePickerVisible && (
+            <DatePicker
+              selected={startDate}
+              onChange={handleDateRangeChange}
+              startDate={startDate}
+              endDate={endDate}
+              selectsRange
+              inline
+            />
+          )}
+        </div>
+        <div className="ml-4">
+          <Table bordered size="sm" className="billing-table">
             <tbody>
               {filteredCharges.map((charge) => (
                 <tr key={charge.id}>
@@ -104,15 +90,14 @@ const Dashboard = (props) => {
                   <td>R$ {charge.value}</td>
                   <td>{formatDate(charge.date)}</td>
                   <td>
-                    {" "}
                     <button
-                      className={styles.btnadd}
+                      className="edit-button"
                       onClick={() => handleEditCharge(charge.id)}
                     >
                       Editar
                     </button>
                     <button
-                      className={styles.btnback}
+                      className="delete-button"
                       onClick={() => handleDeleteCharge(charge.id)}
                     >
                       Excluir
@@ -123,15 +108,55 @@ const Dashboard = (props) => {
             </tbody>
           </Table>
         </div>
-        <br />
-        <div>
-          <NavLink className={styles.btnadd} to="/New">
+      </div>
+      <div className="dashboard-table-container">
+        <Table bordered size="sm" className="billing-table">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Data de Vencimento</th>
+              <th>Valor</th>
+              <th>Status</th>
+              <th>Criado em</th>
+              <th>Atualizado em</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {billingData.map((billing) => (
+              <tr key={billing.id}>
+                <td>{billing.description}</td>
+                <td>{billing.dueDate}</td>
+                <td>{billing.value}</td>
+                <td>{billing.status}</td>
+                <td>{billing.createdAt}</td>
+                <td>{billing.updatedAt}</td>
+                <td>
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEditCharge(billing.id)}
+                  >
+                    Editar
+                  </button>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteCharge(billing.id)}
+                  >
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <div className="add-button-container">
+          <NavLink className="add-button" to="/New">
             Adicionar
           </NavLink>
         </div>
       </div>
     </div>
   );
-  
 };
-export default Dashboard;
+
+export default Home;
