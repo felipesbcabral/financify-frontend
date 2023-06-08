@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "../Styles/New.module.css";
+import "../Styles/NewValues.css";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const NewValues = () => {
@@ -35,24 +35,24 @@ const NewValues = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     // Verificar se os campos obrigatórios estão preenchidos
     if (!name || !description) {
       console.error("Os campos obrigatórios não foram preenchidos.");
       return;
     }
-  
+
     const newChargeRequest = {
-        name,
-        description,
-        dueDate,
-        value: parseFloat(value),
-        status
-    };    
-  
+      name,
+      description,
+      dueDate,
+      value: parseFloat(value),
+      status,
+    };
+
     try {
       const token = authContext.loginResponse?.token;
-  
+
       const response = await axios.post(
         `http://localhost:5294/charge/accounts/${authContext.loginResponse?.account?.id}`,
         newChargeRequest,
@@ -75,53 +75,63 @@ const NewValues = () => {
   };
 
   return (
-    <div>
-      <h2 className={styles.title}>Adicionar Valores</h2>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.descricao}>
-          <label htmlFor="Name">Nome:</label>
+    <div className="container">
+      <form className="form" onSubmit={handleSubmit}>
+        <h2 className="title">Adicionar Cobranças</h2>
+        <div className="descricao">
+          <label className="label" htmlFor="Name">
+            Nome:
+          </label>
           <input
-            className={styles.inputtext}
+            className="inputtext"
             type="text"
             id="name"
             value={name}
             onChange={handleNameChange}
           />
         </div>
-        <div className={styles.descricao}>
-          <label htmlFor="Description">Descrição:</label>
+        <div className="descricao">
+          <label className="label" htmlFor="Description">
+            Descrição:
+          </label>
           <input
-            className={styles.inputtext}
+            className="inputtext"
             type="text"
             id="description"
             value={description}
             onChange={handleDescriptionChange}
           />
         </div>
-        <div className={styles.descricao}>
-          <label htmlFor="DueDate">Data de Vencimento:</label>
+        <div className="descricao">
+          <label className="label" htmlFor="DueDate">
+            Data de Vencimento:
+          </label>
           <input
-            className={styles.inputtext}
+            className="inputtext"
             type="date"
             id="dueDate"
             value={dueDate}
             onChange={handleDueDateChange}
           />
         </div>
-        <div className={styles.valor}>
-          <label htmlFor="Value">Valor:</label>
+        <div className="valor">
+          <label className="label" htmlFor="Value">
+            Valor:
+          </label>
           <input
-            className={styles.inputtext}
+            className="inputtext"
             type="number"
             id="value"
             value={value}
             onChange={handleValueChange}
           />
         </div>
-        <div className={styles.status}>
-          <label htmlFor="Status">Status:</label>
+        <div className="status">
+          <label className="label" htmlFor="Status">
+            Status:
+          </label>
           <select
-            className={styles.inputtext}
+            className="select"
             id="status"
             value={status}
             onChange={handleStatusChange}
@@ -132,12 +142,12 @@ const NewValues = () => {
             <option value="Pending">Pending</option>
           </select>
         </div>
-        <div className={styles.meuelemento}>
-          <button className={styles.btnadd} type="submit">
-            Salvar
-          </button>
-          <button className={styles.btnback} onClick={handleClick}>
+        <div className="button-container">
+          <button className="btn-back" onClick={handleClick}>
             Voltar
+          </button>
+          <button className="btn-save" type="submit">
+            Salvar
           </button>
         </div>
       </form>

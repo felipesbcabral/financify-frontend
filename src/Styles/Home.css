@@ -1,3 +1,63 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1px auto; /* Aumenta a margem superior */
+  width: 80%;
+  max-width: 1200px;
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.datePickerContainer {
+  display: flex;
+  align-items: center;
+  background-color: #023e73;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  color: white; /* Cor branca para o texto */
+}
+
+.datePicker {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1.5px solid #ccc;
+  background-color: #fff;
+  font-size: 14px;
+  width: 200px;
+  margin-left: 10px;
+}
+
+.addButton,
+.editButton,
+.deleteButton {
+  background-color: #023e73;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.addButton:hover,
+.editButton:hover,
+.deleteButton:hover {
+  background-color: #04adbf;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -29,37 +89,6 @@
 
 .table tbody tr:hover {
   background-color: #e5e5e5;
-}
-
-.add-button-container {
-  margin-top: 15px;
-}
-
-.edit-button,
-.delete-button,
-.add-button {
-  background-color: #023e73;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.edit-button:hover,
-.delete-button:hover,
-.add-button:hover {
-  background-color: #04adbf;
-}
-
-.delete-button {
-  background-color: #023e73;
 }
 
 .dashboard-table-container {
@@ -99,6 +128,7 @@
 
 .billing-table {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 .billing-table thead {
@@ -121,6 +151,40 @@
   background-color: #f2f2f2;
 }
 
-.billing-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+@media (max-width: 1500px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .dashboard-table-container .table-responsive {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 95%;
+  }
+
+  .datePickerContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .datePicker {
+    margin-top: 10px;
+    width: 100%;
+  }
 }

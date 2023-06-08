@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { Table, Button } from "react-bootstrap";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
-import styles from "../Styles/Home.css";
-import { AuthContext } from "../contexts/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../Styles/Home.css";
+
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Home = () => {
   const [billingData, setBillingData] = useState([]);
@@ -66,65 +67,70 @@ const Home = () => {
   });
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Cobranças</h2>
-      <div className={styles.datePickerContainer}>
-        <DatePicker
-          selected={startDate}
-          onChange={handleDateRangeChange}
-          startDate={startDate}
-          endDate={endDate}
-          selectsRange
-          placeholderText="Selecione um intervalo de datas"
-          className={styles.datePicker}
-        />
+    <div className="container">
+      <div className="action-container">
+        <NavLink to="/New">
+          <Button variant="primary" className="addButton add-button">
+            Criar Cobrança
+          </Button>
+        </NavLink>
+        <div className="datePickerContainer">
+          <span>Período:</span>
+          <DatePicker
+            selected={startDate}
+            onChange={handleDateRangeChange}
+            startDate={startDate}
+            endDate={endDate}
+            selectsRange
+            className="datePicker"
+          />
+        </div>
       </div>
-      <NavLink to="/New">
-        <Button variant="primary" className={styles.addButton}>
-          Criar Cobrança
-        </Button>
-      </NavLink>
-      <Table striped bordered hover className={styles.billingTable}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Data de Vencimento</th>
-            <th>Valor</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredBillingData.map((charge) => (
-            <tr key={charge.id}>
-              <td>{charge.id}</td>
-              <td>{charge.name}</td>
-              <td>{charge.description}</td>
-              <td>{formatDate(charge.dueDate)}</td>
-              <td>{charge.value}</td>
-              <td>{charge.status}</td>
-              <td>
-                <Button
-                  variant="primary"
-                  onClick={() => handleEditCharge(charge.id)}
-                  className={styles.editButton}
-                >
-                  Editar
-                </Button>{" "}
-                <Button
-                  variant="danger"
-                  onClick={() => handleDeleteCharge(charge.id)}
-                  className={styles.deleteButton}
-                >
-                  Excluir
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <div className="dashboard-table-container">
+        <div className="table-responsive">
+          <Table striped bordered hover className="table billing-table">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Vencimento</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Criado em</th>
+                <th>Atualizado em</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredBillingData.map((charge) => (
+                <tr key={charge.id}>
+                  <td>{charge.description}</td>
+                  <td>{formatDate(charge.dueDate)}</td>
+                  <td>{charge.value}</td>
+                  <td>{charge.status}</td>
+                  <td>{formatDate(charge.createdAt)}</td>
+                  <td>{formatDate(charge.updatedAt)}</td>
+                  <td>
+                    <Button
+                      variant="primary"
+                      className="editButton"
+                      onClick={() => handleEditCharge(charge.id)}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      variant="danger"
+                      className="deleteButton"
+                      onClick={() => handleDeleteCharge(charge.id)}
+                    >
+                      Excluir
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 };
