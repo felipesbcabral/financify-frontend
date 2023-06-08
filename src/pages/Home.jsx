@@ -67,14 +67,14 @@ const Home = () => {
   });
 
   return (
-    <div className="container">
-      <div className="action-container">
+    <div className="home-container">
+      <div className="home-action-container">
         <NavLink to="/New">
-          <Button variant="primary" className="addButton add-button">
+          <Button variant="primary" className="home-addButton">
             Criar Cobrança
           </Button>
         </NavLink>
-        <div className="datePickerContainer">
+        <div className="home-datePickerContainer">
           <span>Período:</span>
           <DatePicker
             selected={startDate}
@@ -82,13 +82,13 @@ const Home = () => {
             startDate={startDate}
             endDate={endDate}
             selectsRange
-            className="datePicker"
+            className="home-datePicker"
           />
         </div>
       </div>
-      <div className="dashboard-table-container">
-        <div className="table-responsive">
-          <Table striped bordered hover className="table billing-table">
+      <div className="home-dashboard-table-container">
+        <div className="home-table-responsive">
+          <Table striped bordered hover className="home-table billing-table">
             <thead>
               <tr>
                 <th>Descrição</th>
@@ -112,14 +112,14 @@ const Home = () => {
                   <td>
                     <Button
                       variant="primary"
-                      className="editButton"
+                      className="home-editButton"
                       onClick={() => handleEditCharge(charge.id)}
                     >
                       Editar
                     </Button>
                     <Button
                       variant="danger"
-                      className="deleteButton"
+                      className="home-deleteButton"
                       onClick={() => handleDeleteCharge(charge.id)}
                     >
                       Excluir

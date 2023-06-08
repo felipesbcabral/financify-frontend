@@ -75,63 +75,63 @@ const NewValues = () => {
   };
 
   return (
-    <div className="container">
-      <form className="form" onSubmit={handleSubmit}>
-        <h2 className="title">Adicionar Cobranças</h2>
-        <div className="descricao">
-          <label className="label" htmlFor="Name">
+    <div className="new-values-container">
+      <form className="new-values-form" onSubmit={handleSubmit}>
+        <h2 className="new-values-title">Adicionar Cobranças</h2>
+        <div className="new-values-descricao">
+          <label className="new-values-label" htmlFor="Name">
             Nome:
           </label>
           <input
-            className="inputtext"
+            className="new-values-inputtext"
             type="text"
             id="name"
             value={name}
             onChange={handleNameChange}
           />
         </div>
-        <div className="descricao">
-          <label className="label" htmlFor="Description">
+        <div className="new-values-descricao">
+          <label className="new-values-label" htmlFor="Description">
             Descrição:
           </label>
           <input
-            className="inputtext"
+            className="new-values-inputtext"
             type="text"
             id="description"
             value={description}
             onChange={handleDescriptionChange}
           />
         </div>
-        <div className="descricao">
-          <label className="label" htmlFor="DueDate">
+        <div className="new-values-descricao">
+          <label className="new-values-label" htmlFor="DueDate">
             Data de Vencimento:
           </label>
           <input
-            className="inputtext"
+            className="new-values-inputtext"
             type="date"
             id="dueDate"
             value={dueDate}
             onChange={handleDueDateChange}
           />
         </div>
-        <div className="valor">
-          <label className="label" htmlFor="Value">
+        <div className="new-values-valor">
+          <label className="new-values-label" htmlFor="Value">
             Valor:
           </label>
           <input
-            className="inputtext"
+            className="new-values-inputtext"
             type="number"
             id="value"
             value={value}
             onChange={handleValueChange}
           />
         </div>
-        <div className="status">
-          <label className="label" htmlFor="Status">
+        <div className="new-values-status">
+          <label className="new-values-label" htmlFor="Status">
             Status:
           </label>
           <select
-            className="select"
+            className="new-values-select"
             id="status"
             value={status}
             onChange={handleStatusChange}
@@ -142,11 +142,11 @@ const NewValues = () => {
             <option value="Pending">Pending</option>
           </select>
         </div>
-        <div className="button-container">
-          <button className="btn-back" onClick={handleClick}>
+        <div className="new-values-button-container">
+          <button className="new-values-btn-back" onClick={handleClick}>
             Voltar
           </button>
-          <button className="btn-save" type="submit">
+          <button className="new-values-btn-save" type="submit">
             Salvar
           </button>
         </div>

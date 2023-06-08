@@ -1,13 +1,13 @@
-.container {
+.home-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1px auto; /* Aumenta a margem superior */
+  margin-top: 100px;
   width: 80%;
   max-width: 1200px;
 }
 
-.action-container {
+.home-action-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,17 +15,17 @@
   margin-bottom: 20px;
 }
 
-.datePickerContainer {
+.home-datePickerContainer {
   display: flex;
   align-items: center;
   background-color: #023e73;
   padding: 10px;
   border-radius: 5px;
   margin-right: 10px;
-  color: white; /* Cor branca para o texto */
+  color: white;
 }
 
-.datePicker {
+.home-datePicker {
   padding: 6px;
   border-radius: 5px;
   border: 1.5px solid #ccc;
@@ -35,9 +35,9 @@
   margin-left: 10px;
 }
 
-.addButton,
-.editButton,
-.deleteButton {
+.home-addButton,
+.home-editButton,
+.home-deleteButton {
   background-color: #023e73;
   border: none;
   color: white;
@@ -52,77 +52,77 @@
   transition: background-color 0.3s ease;
 }
 
-.addButton:hover,
-.editButton:hover,
-.deleteButton:hover {
+.home-addButton:hover,
+.home-editButton:hover,
+.home-deleteButton:hover {
   background-color: #04adbf;
 }
 
-.table {
+.home-table {
   width: 100%;
   border-collapse: collapse;
   font-family: Arial, sans-serif;
 }
 
-.table th,
-.table td {
+.home-table th,
+.home-table td {
   padding: 12px;
   border: 1px solid #ccc;
   text-align: center;
 }
 
-.table th {
+.home-table th {
   background-color: #023e73;
   font-weight: bold;
   color: white;
 }
 
-.table td {
+.home-table td {
   background-color: #f8f8f8;
   color: #141414;
   font-weight: 600;
 }
 
-.table tbody tr:nth-child(even) {
+.home-table tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-.table tbody tr:hover {
+.home-table tbody tr:hover {
   background-color: #e5e5e5;
 }
 
-.dashboard-table-container {
+.home-dashboard-table-container {
   margin-top: 20px;
 }
 
-.dashboard-table-container .table {
+.home-dashboard-table-container .home-table {
   background-color: #f8f8f8;
   border-radius: 10px;
   border: 1px solid #ccc;
 }
 
-.dashboard-table-container .table th,
-.dashboard-table-container .table td {
+.home-dashboard-table-container .home-table th,
+.home-dashboard-table-container .home-table td {
   padding: 12px;
   text-align: center;
 }
 
-.dashboard-table-container .table th#description,
-.dashboard-table-container .table td#description {
+.home-dashboard-table-container .home-table th#description,
+.home-dashboard-table-container .home-table td#description {
   width: 30%;
   text-align: left;
 }
 
-.dashboard-table-container .table th#due-date,
-.dashboard-table-container .table td#due-date,
-.dashboard-table-container .table th#value,
-.dashboard-table-container .table td#value,
-.dashboard-table-container .table th#status,
-.dashboard-table-container .table td#status,
-.dashboard-table-container .table th#created-at,
-.dashboard-table-container .table td#created-at,
-.dashboard-table-container .table th#updated-at,
-.dashboard-table-container .table td#updated-at {
+.home-dashboard-table-container .home-table th#due-date,
+.home-dashboard-table-container .home-table td#due-date,
+.home-dashboard-table-container .home-table th#value,
+.home-dashboard-table-container .home-table td#value,
+.home-dashboard-table-container .home-table th#status,
+.home-dashboard-table-container .home-table td#status,
+.home-dashboard-table-container .home-table th#created-at,
+.home-dashboard-table-container .home-table td#created-at,
+.home-dashboard-table-container .home-table th#updated-at,
+.home-dashboard-table-container .home-table td#updated-at {
   width: 15%;
 }
 
@@ -152,38 +152,38 @@
 }
 
 @media (max-width: 1500px) {
-  .container {
+  .home-container {
     width: 90%;
   }
 }
 
 @media (max-width: 1200px) {
-  .container {
+  .home-container {
     width: 95%;
   }
 }
 
 @media (max-width: 768px) {
-  .container {
+  .home-container {
     width: 90%;
   }
 
-  .dashboard-table-container .table-responsive {
+  .home-dashboard-table-container .table-responsive {
     overflow-x: auto;
   }
 }
 
 @media (max-width: 576px) {
-  .container {
+  .home-container {
     width: 95%;
   }
 
-  .datePickerContainer {
+  .home-datePickerContainer {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .datePicker {
+  .home-datePicker {
     margin-top: 10px;
     width: 100%;
   }
