@@ -1,36 +1,55 @@
-import React, { useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
-import { Table } from "react-bootstrap";
+import React, { useState, useEffect, useContext } from "react";
+import { Table, Button } from "react-bootstrap";
+import { NavLink, useParams } from "react-router-dom";
+import axios from "axios";
+import styles from "../Styles/Home.css";
+import { AuthContext } from "../contexts/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../Styles/Home.css";
 
 const Home = () => {
-  const [datePickerVisible, setDatePickerVisible] = useState(false);
+  const [billingData, setBillingData] = useState([]);
+  const { accountId } = useParams();
+  const authContext = useContext(AuthContext);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [billingData, setBillingData] = useState([
-    {
-      id: 1,
-      description: "Cobrança 1",
-      dueDate: "2023-06-10",
-      value: 100.0,
-      status: "Pendente",
-      createdAt: "2023-06-01 10:00:00",
-      updatedAt: "2023-06-01 10:00:00",
-    },
-    {
-      id: 2,
-      description: "Cobrança 2",
-      dueDate: "2023-06-15",
-      value: 150.0,
-      status: "Pago",
-      createdAt: "2023-06-02 14:30:00",
-      updatedAt: "2023-06-02 14:30:00",
-    },
-    // Add more billing data as needed
-  ]);
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchBillingData = async () => {
+      try {
+        const token = authContext.loginResponse?.token;
+        const accountId = authContext.loginResponse?.account?.id;
+
+        const response = await axios.get(
+          `http://localhost:5294/charge/accounts/${accountId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setBillingData(response.data);
+      } catch (error) {
+        console.error("Erro ao obter as cobranças:", error);
+      }
+    };
+
+    fetchBillingData();
+  }, [authContext.loginResponse]);
+
+  const handleEditCharge = (chargeId) => {
+    // Navegar para a página de edição com o ID da cobrança
+  };
+
+  const handleDeleteCharge = (chargeId) => {
+    // Implemente sua lógica para exclusão da cobrança aqui
+  };
+
+  const formatDate = (dateString) => {
+    // Implemente sua lógica de formatação de data aqui
+    return dateString;
+  };
 
   const handleDateRangeChange = (dates) => {
     const [start, end] = dates;
@@ -38,123 +57,74 @@ const Home = () => {
     setEndDate(end);
   };
 
-  const formatDate = (dateString) => {
-    // Implement your date formatting logic here
-    return dateString;
-  };
-
-  const handleEditCharge = (chargeId) => {
-    navigate(`/Edit`);
-  };
-
-  const handleDeleteCharge = (chargeId) => {
-    // Implement your logic to handle delete charge action
-  };
-
-  const handleAddCharge = (newCharge) => {
-    const updatedBillingData = [...billingData, newCharge];
-    setBillingData(updatedBillingData);
-    navigate("/");
-  };
-
-  const filteredCharges = []; // Add your logic to filter charges based on selected date range
+  const filteredBillingData = billingData.filter((charge) => {
+    if (startDate && endDate) {
+      const chargeDate = new Date(charge.dueDate);
+      return chargeDate >= startDate && chargeDate <= endDate;
+    }
+    return true;
+  });
 
   return (
-    <div>
-      <div className="d-flex align-items-center mb-4">
-        <div>
-          <button
-            className="add-button"
-            onClick={() => setDatePickerVisible(!datePickerVisible)}
-          >
-            Selecionar datas
-          </button>{" "}
-          {datePickerVisible && (
-            <DatePicker
-              selected={startDate}
-              onChange={handleDateRangeChange}
-              startDate={startDate}
-              endDate={endDate}
-              selectsRange
-              inline
-            />
-          )}
-        </div>
-        <div className="ml-4">
-          <Table bordered size="sm" className="billing-table">
-            <tbody>
-              {filteredCharges.map((charge) => (
-                <tr key={charge.id}>
-                  <td>{charge.id}</td>
-                  <td>{charge.description}</td>
-                  <td>R$ {charge.value}</td>
-                  <td>{formatDate(charge.date)}</td>
-                  <td>
-                    <button
-                      className="edit-button"
-                      onClick={() => handleEditCharge(charge.id)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="delete-button"
-                      onClick={() => handleDeleteCharge(charge.id)}
-                    >
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Cobranças</h2>
+      <div className={styles.datePickerContainer}>
+        <DatePicker
+          selected={startDate}
+          onChange={handleDateRangeChange}
+          startDate={startDate}
+          endDate={endDate}
+          selectsRange
+          placeholderText="Selecione um intervalo de datas"
+          className={styles.datePicker}
+        />
       </div>
-      <div className="dashboard-table-container">
-        <Table bordered size="sm" className="billing-table">
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Data de Vencimento</th>
-              <th>Valor</th>
-              <th>Status</th>
-              <th>Criado em</th>
-              <th>Atualizado em</th>
-              <th>Ações</th>
+      <NavLink to="/New">
+        <Button variant="primary" className={styles.addButton}>
+          Criar Cobrança
+        </Button>
+      </NavLink>
+      <Table striped bordered hover className={styles.billingTable}>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Data de Vencimento</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredBillingData.map((charge) => (
+            <tr key={charge.id}>
+              <td>{charge.id}</td>
+              <td>{charge.name}</td>
+              <td>{charge.description}</td>
+              <td>{formatDate(charge.dueDate)}</td>
+              <td>{charge.value}</td>
+              <td>{charge.status}</td>
+              <td>
+                <Button
+                  variant="primary"
+                  onClick={() => handleEditCharge(charge.id)}
+                  className={styles.editButton}
+                >
+                  Editar
+                </Button>{" "}
+                <Button
+                  variant="danger"
+                  onClick={() => handleDeleteCharge(charge.id)}
+                  className={styles.deleteButton}
+                >
+                  Excluir
+                </Button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {billingData.map((billing) => (
-              <tr key={billing.id}>
-                <td>{billing.description}</td>
-                <td>{billing.dueDate}</td>
-                <td>{billing.value}</td>
-                <td>{billing.status}</td>
-                <td>{billing.createdAt}</td>
-                <td>{billing.updatedAt}</td>
-                <td>
-                  <button
-                    className="edit-button"
-                    onClick={() => handleEditCharge(billing.id)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    className="delete-button"
-                    onClick={() => handleDeleteCharge(billing.id)}
-                  >
-                    Excluir
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        <div className="add-button-container">
-          <NavLink className="add-button" to="/New">
-            Adicionar
-          </NavLink>
-        </div>
-      </div>
+          ))}
+        </tbody>
+      </Table>
     </div>
   );
 };

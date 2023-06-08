@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
   const [error, setError] = useState(null);
+  const [loginResponse, setLoginResponse] = useState(null); // Adicione esta linha
 
   const login = async (email, password) => {
     try {
@@ -16,19 +17,15 @@ export const AuthProvider = ({ children }) => {
       });
       const { account, token } = response.data;
 
+      // Armazene o token JWT no local storage ou em um cookie
+      localStorage.setItem("token", token);
+
       setAuthenticated(true);
       setUserId(account.Id);
       setError(null);
+      setLoginResponse(response.data); // Atualize o objeto de resposta do login
     } catch (error) {
-      if (error.response && error.response.data) {
-        if (error.response.status === 400) {
-          setError(error.response.data);
-        } else {
-          setError(error.response.data.message);
-        }
-      } else {
-        setError("Ocorreu um erro ao realizar o login");
-      }
+      setError("Erro ao efetuar login");
     }
   };
 
@@ -36,24 +33,7 @@ export const AuthProvider = ({ children }) => {
     setAuthenticated(false);
     setUserId(null);
     setError(null);
-  };
-
-  const updateCharge = async (chargeId, updatedCharge) => {
-    try {
-      const response = await axios.put(
-        `http://localhost:5294/v1/charge/${chargeId}`,
-        updatedCharge
-      );
-      // Lógica adicional após a atualização da cobrança (charge), se necessário...
-
-      setError(null);
-    } catch (error) {
-      if (error.response && error.response.data) {
-        setError(error.response.data.message);
-      } else {
-        setError("Ocorreu um erro ao atualizar a cobrança");
-      }
-    }
+    setLoginResponse(null); // Adicione esta linha para limpar o objeto de resposta do login
   };
 
   const authContextValue = {
@@ -61,8 +41,8 @@ export const AuthProvider = ({ children }) => {
     userId,
     login,
     logout,
-    updateCharge,
     error,
+    loginResponse, // Adicione esta linha para disponibilizar o objeto de resposta do login
   };
 
   return (

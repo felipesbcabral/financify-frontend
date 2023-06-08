@@ -15,6 +15,8 @@ const CadastroUsuarios = () => {
     event.preventDefault();
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await axios.post(
         "http://localhost:5294/v1/Account",
         {
@@ -22,6 +24,11 @@ const CadastroUsuarios = () => {
           LastName: lastName,
           Password: password,
           Email: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
