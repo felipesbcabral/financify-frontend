@@ -96,10 +96,8 @@
     color: #fff;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
+    background-color: transparent;
+    border: none;
 
     &.active {
       background-color: rgba(255, 255, 255, 0.2);
@@ -116,11 +114,3 @@
     }
   }
 }
-.teste {
-  display: flex;
-  align-items: center;
-  margin-top: 15px;
-  cursor: pointer;
-  color: #fff;
-}
-
