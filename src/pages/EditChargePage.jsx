@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
-import styles from "../Styles/New.module.css";
 import { AuthContext } from "../contexts/AuthProvider";
 
 function EditValues(props) {
@@ -46,12 +45,12 @@ function EditValues(props) {
 
   return (
     <div>
-      <h2 className={styles.title}>Editar Valores</h2>
+      <h2 className="title">Editar Valores</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.descricao}>
+        <div className="descricao">
           <label htmlFor="name">Nome:</label>
           <input
-            className={styles.inputtext}
+            className="inputtext"
             type="text"
             id="name"
             value={name}
@@ -59,10 +58,10 @@ function EditValues(props) {
           />
         </div>
         
-        <div className={styles.dueDate}>
+        <div className="dueDate">
           <label htmlFor="dueDate">Data de Vencimento:</label>
           <input
-            className={styles.inputtext}
+            className="inputtext"
             type="date"
             id="dueDate"
             value={dueDate}
@@ -70,10 +69,10 @@ function EditValues(props) {
           />
         </div>
         
-        <div className={styles.valor}>
+        <div className="valor">
           <label htmlFor="value">Valor:</label>
           <input
-            className={styles.inputtext}
+            className="inputtext"
             type="text"
             id="value"
             value={value}
@@ -81,9 +80,9 @@ function EditValues(props) {
           />
         </div>
         
-        <div className={styles.meuelemento}>
-          <button className={styles.btnadd} type="submit" >Editar</button>
-          <button className={styles.btnback} onClick={handleClick}>Voltar</button>
+        <div className="meuelemento">
+          <button className="btnadd" type="submit" >Editar</button>
+          <button className="btnback" onClick={handleClick}>Voltar</button>
         </div>
       </form>
     </div>

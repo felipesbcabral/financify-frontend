@@ -22,7 +22,7 @@
   font-weight: bold;
 }
 
-.button-container {
+.btLogin-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,23 +39,15 @@ body {
   padding: 0;
 }
 
-.button-container {
+.btLogin-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap; /* Adiciona a quebra de linha */
   align-items: center;
-  justify-content: space-between;
-  margin-top: 50rem;
-}
-
-.button-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
 }
 
-.button-wrapper button {
+.btLogin-wrapper btLogin {
   margin-bottom: 2rem;
   padding: 16px 32px;
   font-size: 18px;
@@ -66,15 +58,15 @@ body {
   margin-bottom: 1rem;
 }
 
-.button-wrapper button:first-child {
+.btLogin-wrapper btLogin:first-child {
   margin-bottom: 1rem;
 }
 
-.button-wrapper button:hover {
+.btLogin-wrapper btLogin:hover {
   background-color: #3c0ebe;
 }
 
-.log-in-button {
+.log-in-btLogin {
   margin-top: 20px;
   background-color: #461bff;
   color: #fff;
@@ -101,8 +93,8 @@ body {
 }
 
 .link,
-.forgot-password-button,
-.create-account-button {
+.forgot-password-btLogin,
+.create-account-btLogin {
   color: #461bff;
   font-size: 14px;
   text-decoration: none;
@@ -116,8 +108,8 @@ body {
 }
 
 .link:hover,
-.forgot-password-button:hover,
-.create-account-button:hover {
+.forgot-password-btLogin:hover,
+.create-account-btLogin:hover {
   color: #3c0ebe;
 }
 
@@ -133,7 +125,7 @@ body {
   margin-top: 0.5rem;
 }
 
-.log-in-button {
+.log-in-btLogin {
   margin-bottom: 2rem;
 }
 
@@ -150,6 +142,11 @@ body {
   transition: border-color 0.3s ease;
   color: black; /* Alteração para a cor do texto ser preto */
   font-weight: bold;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #3c0ebe;
 }
 
 .login-form input[type="email"]:focus,
