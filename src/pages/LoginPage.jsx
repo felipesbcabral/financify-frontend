@@ -19,10 +19,7 @@ function LoginPage({ onLogin }) {
   };
 
   const handleSubmit = async (event) => {
-  const handleSubmit = async (event) => {
     event.preventDefault();
-    await authContext.login(email, password);
-    onLogin(event);
     await authContext.login(email, password);
     onLogin(event);
     navigate("/");

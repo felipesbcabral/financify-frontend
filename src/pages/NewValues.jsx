@@ -137,9 +137,9 @@ const NewValues = () => {
             onChange={handleStatusChange}
           >
             <option value="">Selecione</option>
-            <option value="Payed">Pago</option>
-            <option value="Expired">Vencido</option>
-            <option value="Pending">Pendete</option>
+            <option value="Payed">Payed</option>
+            <option value="Expired">Expired</option>
+            <option value="Pending">Pending</option>
           </select>
         </div>
         <div className="new-values-button-container">
