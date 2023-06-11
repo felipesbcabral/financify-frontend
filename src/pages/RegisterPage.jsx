@@ -2,22 +2,46 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../Styles/New.module.css";
 import "../Styles/CadastroUsuarios.css";
+import axios from "axios";
 
 const CadastroUsuarios = () => {
-  const [nomeUsuario, setNomeUsuario] = useState("");
-  const [senha, setSenha] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setSenha] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aqui você pode adicionar a lógica para validar os dados do usuário e realizar o cadastro
 
-    // Exemplo de validação simples apenas para fins ilustrativos
-    if (nomeUsuario === "" || senha === "" || email === "") {
-      alert("Por favor, preencha todos os campos.");
-    } else {
-      // Realizar o cadastro do usuário
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        "http://localhost:5294/v1/Account",
+        {
+          FirstName: firstName,
+          LastName: lastName,
+          Password: password,
+          Email: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // Aqui você pode tratar a resposta do servidor, se necessário
+      console.log(response.data);
+
       alert("Usuário cadastrado com sucesso!");
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setError(error.response.data);
+      } else {
+        setError("Ocorreu um erro ao cadastrar o usuário");
+      }
     }
   };
 
@@ -26,12 +50,21 @@ const CadastroUsuarios = () => {
       <h1 className={styles.title}>Cadastro de Usuários</h1>
       <form onSubmit={handleSubmit} className="form-cadastro">
         <div className="form-group">
-          <label htmlFor="nomeUsuario">Nome de Usuário:</label>
+          <label htmlFor="nomeUsuario">Primeiro nome:</label>
           <input
             type="text"
             id="nomeUsuario"
-            value={nomeUsuario}
-            onChange={(e) => setNomeUsuario(e.target.value)}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="nomeUsuario">Ultimo nome:</label>
+          <input
+            type="text"
+            id="nomeUsuario"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -39,7 +72,7 @@ const CadastroUsuarios = () => {
           <input
             type="password"
             id="senha"
-            value={senha}
+            value={password}
             onChange={(e) => setSenha(e.target.value)}
           />
         </div>
@@ -52,12 +85,11 @@ const CadastroUsuarios = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+        {error && <div className="error-message">{error}</div>}
         <div className="button-container">
-          <Link to="/login" className="link-cadastrar">
-            <button type="submit" className="btn-cadastrar">
-              Cadastrar
-            </button>
-          </Link>
+          <button type="submit" className="btn-cadastrar">
+            Cadastrar
+          </button>
           <Link to="/login" className="link-voltar">
             <button type="button" className="btn-voltar">
               Voltar

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import '../Styles/Navbar.scss';
-import { FaBars, FaSignOutAlt } from 'react-icons/fa';
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "../Styles/Navbar.scss";
+import { FaBars, FaSignOutAlt } from "react-icons/fa";
 
 const Sidebar = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -12,24 +12,27 @@ const Sidebar = (props) => {
   const indicatorRef = useRef();
   const location = useLocation();
 
-  const navigate = useNavigate()
-    
+  const navigate = useNavigate();
 
-    function handleClick(event) {
-        props.onLogout(event)
-        navigate('/login')
-    }
+  function handleClick(event) {
+    props.onLogout(event);
+    navigate("/login");
+  }
   useEffect(() => {
     setTimeout(() => {
-      const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
+      const sidebarItem = sidebarRef.current.querySelector(
+        ".sidebar__menu__item"
+      );
       indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
       setStepHeight(sidebarItem.clientHeight);
     }, 50);
   }, []);
 
   useEffect(() => {
-    const curPath = window.location.pathname.split('/')[1];
-    const activeItem = sidebarNavItems.findIndex((item) => item.section === curPath);
+    const curPath = window.location.pathname.split("/")[1];
+    const activeItem = sidebarNavItems.findIndex(
+      (item) => item.section === curPath
+    );
     setActiveIndex(curPath.length === 0 ? 0 : activeItem);
   }, [location]);
 
@@ -46,56 +49,95 @@ const Sidebar = (props) => {
   };
 
   const sidebarNavItems = [
-    { display: 'Home', icon: <i className='bx bx-home'></i>, to: '/', section: '' },
-    { display: 'Adicionar', icon: <i className='bx bx-star'></i>, to: '/new', section: 'new' },
-    { display: 'Editar', icon: <i className='bx bx-calendar'></i>, to: '/edit', section: 'calendar' },
-    { display: 'Configuração', icon: <i className='bx bx-user'></i>, to: '/config', section: 'user' },
+    {
+      display: "Home",
+      icon: <i className="bx bx-home"></i>,
+      to: "/",
+      section: "",
+    },
+    {
+      display: "Adicionar",
+      icon: <i className="bx bx-star"></i>,
+      to: "/new",
+      section: "new",
+    },
+    {
+      display: "Editar",
+      icon: <i className="bx bx-calendar"></i>,
+      to: "/edit",
+      section: "calendar",
+    },
+    {
+      display: "Configuração",
+      icon: <i className="bx bx-user"></i>,
+      to: "/config",
+      section: "user",
+    },
   ];
-  
-  return (
-    <div className={`sidebar ${showSidebar ? 'active' : ''} ${isMenuHidden ? 'hidden' : ''}`}>
-    <button className="sidebar__toggle visible" onClick={toggleSidebar}>  <FaBars />
-       {showSidebar ? <i className="bx bx-chevron-left"></i> : <i className="bx bx-menu"></i>}
-    </button>
-    
-    <button className="sidebar__hide" onClick={toggleMenu}>
-      {isMenuHidden ? <i className="bx bx-right-arrow-alt"></i> : <i className="bx bx-left-arrow-alt"></i>}
-    </button>
-    <div ref={sidebarRef} className="sidebar__menu">
-      <div
-        ref={indicatorRef}
-        className="sidebar__menu__indicator"
-        style={{
-          transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`,
-        }}
-      ></div>
-      <div className={`sidebar__menu__list ${showSidebar ? 'active' : ''}`}>
-      {sidebarNavItems.map((item, index) => (
-    <Link
-        to={item.to}
-        key={index}
-        className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}
-        onClick={handleItemClick}
-    >
-        <div className="sidebar__menu__item__icon">{item.icon}</div>
-        <div className="sidebar__menu__item__text">{item.display}</div>
-    </Link>
-))}
-<button className="sidebar__menu__item" onClick={handleClick}>
-    <div className="sidebar__menu__item__icon"><FaSignOutAlt /></div>
-    <div className="sidebar__menu__item__text">Sair</div>
-</button>
-      </div>
-    </div>
-    
-    {showSidebar && (
-      <button className="sidebar__toggle" onClick={toggleSidebar}>
-         <i className="bx bx-chevron-left"></i>
-      </button>
-    )}
-  </div>
-);
 
+  return (
+    <div
+      className={`sidebar ${showSidebar ? "active" : ""} ${
+        isMenuHidden ? "hidden" : ""
+      }`}
+    >
+      <button className="sidebar__toggle visible" onClick={toggleSidebar}>
+        {" "}
+        <FaBars />
+        {showSidebar ? (
+          <i className="bx bx-chevron-left"></i>
+        ) : (
+          <i className="bx bx-menu"></i>
+        )}
+      </button>
+
+      <button className="sidebar__hide" onClick={toggleMenu}>
+        {isMenuHidden ? (
+          <i className="bx bx-right-arrow-alt"></i>
+        ) : (
+          <i className="bx bx-left-arrow-alt"></i>
+        )}
+      </button>
+      <div ref={sidebarRef} className="sidebar__menu">
+        <div
+          ref={indicatorRef}
+          className="sidebar__menu__indicator"
+          style={{
+            transform: `translateX(-50%) translateY(${
+              activeIndex * stepHeight
+            }px)`,
+          }}
+        ></div>
+        <div className={`sidebar__menu__list ${showSidebar ? "active" : ""}`}>
+          {sidebarNavItems.map((item, index) => (
+            <Link
+              to={item.to}
+              key={index}
+              className={`sidebar__menu__item ${
+                activeIndex === index ? "active" : ""
+              }`}
+              onClick={handleItemClick}
+            >
+              <div className="sidebar__menu__item__icon">{item.icon}</div>
+              <div className="sidebar__menu__item__text">{item.display}</div>
+            </Link>
+          ))}
+          <button className="sidebar__menu__item" onClick={handleClick}>
+            <div className="sidebar__menu__item__icon">
+              <FaSignOutAlt />
+            </div>
+            <div className="sidebar__menu__item__text">Sair</div>
+          </button>
+        </div>
+      </div>
+
+      {showSidebar && (
+        <button className="sidebar__toggle" onClick={toggleSidebar}>
+          <i className="bx bx-chevron-left"></i>
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default Sidebar;

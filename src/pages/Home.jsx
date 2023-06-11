@@ -1,44 +1,56 @@
-import React, { useState } from "react";
-import { Table } from "react-bootstrap";
+import React, { useState, useEffect, useContext } from "react";
+import { Table, Button } from "react-bootstrap";
+import { NavLink, useParams } from "react-router-dom";
+import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import "../Styles/Home.css"; // Importe seu arquivo CSS aqui
-import styles from "../Styles/New.module.css"
+import "../Styles/Home.css";
 
-const Dashboard = (props) => {
-  const navigate = useNavigate();
+import { AuthContext } from "../contexts/AuthProvider";
 
-  function handleClick(event) {
-    props.onLogin(event)
-    navigate("/home");
-  }
+const Home = () => {
+  const [billingData, setBillingData] = useState([]);
+  const { accountId } = useParams();
+  const authContext = useContext(AuthContext);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  const [datePickerVisible, setDatePickerVisible] = useState(false); // estado que controla a visibilidade do calendário
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [balance, setBalance] = useState(1200);
-  const [charges, setCharges] = useState([
-    {
-      id: 1,
-      description: "Conta de luz",
-      value: 120,
-      date: new Date(),
-    },
-    {
-      id: 2,
-      description: "Conta de água",
-      value: 90,
-      date: new Date(),
-    },
-    {
-      id: 3,
-      description: "Aluguel",
-      value: 900,
-      date: new Date(),
-    },
-  ]);
+  useEffect(() => {
+    const fetchBillingData = async () => {
+      try {
+        const token = authContext.loginResponse?.token;
+        const accountId = authContext.loginResponse?.account?.id;
+
+        const response = await axios.get(
+          `http://localhost:5294/charge/accounts/${accountId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setBillingData(response.data);
+      } catch (error) {
+        console.error("Erro ao obter as cobranças:", error);
+      }
+    };
+
+    fetchBillingData();
+  }, [authContext.loginResponse]);
+
+  const handleEditCharge = (chargeId) => {
+    // Navegar para a página de edição com o ID da cobrança
+  };
+
+  const handleDeleteCharge = (chargeId) => {
+    // Implemente sua lógica para exclusão da cobrança aqui
+  };
+
+  const formatDate = (dateString) => {
+    // Implemente sua lógica de formatação de data aqui
+    return dateString;
+  };
 
   const handleDateRangeChange = (dates) => {
     const [start, end] = dates;
@@ -46,92 +58,81 @@ const Dashboard = (props) => {
     setEndDate(end);
   };
 
-  const handleEditCharge = (id) => {
-    navigate("/edit");
-  };
-
-  const handleDeleteCharge = (id) => {
-    const updatedCharges = charges.filter((charge) => charge.id !== id);
-    setCharges(updatedCharges);
-  };
-
-  const filteredCharges = charges.filter((charge) => {
-    const chargeDate = new Date(charge.date);
-    return chargeDate >= startDate && chargeDate <= endDate;
+  const filteredBillingData = billingData.filter((charge) => {
+    if (startDate && endDate) {
+      const chargeDate = new Date(charge.dueDate);
+      return chargeDate >= startDate && chargeDate <= endDate;
+    }
+    return true;
   });
 
-  const formatDate = (date) => {
-    const options = { year: "numeric", month: "short", day: "numeric" };
-    return new Date(date).toLocaleDateString("pt-BR", options);
-  };
-
   return (
-    <div>
-      <div>
-        <button className={styles.calender} onClick={() => setDatePickerVisible(!datePickerVisible)}>
-          Selecionar datas
-        </button>{" "}
-        {/* botão que controla a visibilidade do calendário */}
-        {datePickerVisible && ( // calendário que só aparece quando a variável datePickerVisible é true
+    <div className="home-container">
+      <div className="home-action-container">
+        <NavLink to="/New">
+          <Button variant="primary" className="home-addButton">
+            Criar Cobrança
+          </Button>
+        </NavLink>
+        <div className="home-datePickerContainer">
+          <span>Período:</span>
           <DatePicker
             selected={startDate}
             onChange={handleDateRangeChange}
             startDate={startDate}
             endDate={endDate}
             selectsRange
-            inline
+            className="home-datePicker"
           />
-        )}
+        </div>
       </div>
-      <br />
-      <div className="dashboard-table-container">
-        <div>
-          <Table striped bordered hover size="sm" className="table-without-bg">
+      <div className="home-dashboard-table-container">
+        <div className="home-table-responsive">
+          <Table striped bordered hover className="home-table billing-table">
             <thead>
               <tr>
-                <th id="id">ID</th>
-                <th id="description">Descrição</th>
-                <th id="value">Valor</th>
-                <th id="date">Data</th>
-                <th id="actions">Ações</th>
+                <th>Descrição</th>
+                <th>Vencimento</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Criado em</th>
+                <th>Atualizado em</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              {filteredCharges.map((charge) => (
+              {filteredBillingData.map((charge) => (
                 <tr key={charge.id}>
-                  <td>{charge.id}</td>
                   <td>{charge.description}</td>
-                  <td>R$ {charge.value}</td>
-                  <td>{formatDate(charge.date)}</td>
+                  <td>{formatDate(charge.dueDate)}</td>
+                  <td>{charge.value}</td>
+                  <td>{charge.status}</td>
+                  <td>{formatDate(charge.createdAt)}</td>
+                  <td>{formatDate(charge.updatedAt)}</td>
                   <td>
-                    {" "}
-                    <button
-                      className={styles.btnadd}
+                    <Button
+                      variant="primary"
+                      className="home-editButton"
                       onClick={() => handleEditCharge(charge.id)}
                     >
                       Editar
-                    </button>
-                    <button
-                      className={styles.btnback}
+                    </Button>
+                    <Button
+                      variant="danger"
+                      className="home-deleteButton"
                       onClick={() => handleDeleteCharge(charge.id)}
                     >
                       Excluir
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </Table>
         </div>
-        <br />
-        <div>
-          <NavLink className={styles.btnadd} to="/New">
-            Adicionar
-          </NavLink>
-        </div>
       </div>
     </div>
   );
-  
 };
-export default Dashboard;
+
+export default Home;

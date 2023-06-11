@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import "../Styles/LoginPage.css"; // Importa o arquivo CSS
-import styles from "../Styles/New.module.css";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
+import axios from "axios";
+import "../Styles/LoginPage.css";
 
-function LoginPage(props) {
+function LoginPage({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -16,17 +18,10 @@ function LoginPage(props) {
     setPassword(event.target.value);
   };
 
-  const handleEmailClick = (event) => {
-    navigate("/register");
-  };
-
-  const handlePasswordClick = (event) => {
-    navigate("/forgot");
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    props.onLogin(email, password);
+    await authContext.login(email, password);
+    onLogin(event);
     navigate("/");
   };
 
@@ -34,38 +29,51 @@ function LoginPage(props) {
     // Coloque aqui a lógica de recuperação de senha
   };
 
+  const handlePasswordClick = () => {
+    handleForgotPassword();
+  };
+
+  const handleEmailClick = () => {
+    navigate("/register");
+  };
+
   return (
     <div className="login-page">
-      <div className="logo-container">
-        <img src="../src/assets/financify-logo.jpg" alt="Logo do Financify" />
-      </div>
-      <div className="title-container"></div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          E-mail:
-          <input className={styles.inputlogin} type="email" value={email} onChange={handleEmailChange} />
-        </label>
-        <label>
-          Senha:
-          <input className={styles.inputlogin}
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="input-container">
+          <input
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            className="input"
+            placeholder="Email"
+            required
+          />
+        </div>
+        <div className="input-container">
+          <input
             type="password"
             value={password}
             onChange={handlePasswordChange}
+            className="input"
+            placeholder="Senha"
+            required
           />
-        </label>
-        <button className="log-in-button" type="submit">
-          Entrar
-        </button>
-        <button className="log-in-button" onClick={handlePasswordClick}>
-          Esqueci minha senha
-        </button>
-        <button className="log-in-button" onClick={handleEmailClick}>
-          Cadastre-se
-        </button>
+        </div>
+        <div className="button-container">
+          <button type="submit" className="log-in-button">
+            Entrar
+          </button>
+          <div className="button-wrapper">
+            <Link to="/forgot" className="link">
+              Esqueci minha senha
+            </Link>
+            <Link to="/register" className="link">
+              Criar uma nova conta
+            </Link>
+          </div>
+        </div>
       </form>
-      <div className={styles.botaoentrar}>
-        <div></div>
-      </div>
     </div>
   );
 }

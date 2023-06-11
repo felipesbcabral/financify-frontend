@@ -3,25 +3,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
-form {
+.login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
 }
 
-label {
+.label {
   margin: 0.5rem 0;
+  font-weight: bold;
 }
 
-.buttons-container {
+.button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-top: 2rem;
 }
 
 body {
@@ -35,9 +41,10 @@ body {
 
 .button-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-top: 50rem;
 }
 
 .button-wrapper {
@@ -45,48 +52,107 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  width: 100%;
 }
 
 .button-wrapper button {
   margin-bottom: 2rem;
+  padding: 16px 32px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.button-wrapper button:first-child {
+  margin-bottom: 1rem;
+}
+
+.button-wrapper button:hover {
+  background-color: #3c0ebe;
 }
 
 .log-in-button {
-  margin-top: 10px;
+  margin-top: 20px;
   background-color: #461bff;
   color: #fff;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  color: white;
   cursor: pointer;
-  padding: 8px 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  border-radius: 5px;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.title-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10vh;
-  margin-left: 5vw;
-  margin-right: 5vw;
-}
-
-.inputlogin {
-  margin-left: .5rem;
-  padding: .5rem;
-  border: none;
+  font-size: 16px;
   border-radius: 5px;
   width: 100%;
+  font-weight: bold;
+}
+
+.link {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.link:first-child {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.link,
+.forgot-password-button,
+.create-account-button {
+  color: #461bff;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+  outline: none;
+}
+
+.link:hover,
+.forgot-password-button:hover,
+.create-account-button:hover {
+  color: #3c0ebe;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+
+.success-message {
+  color: green;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+
+.log-in-button {
+  margin-bottom: 2rem;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.5rem;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+  color: black; /* Alteração para a cor do texto ser preto */
+  font-weight: bold;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #3c0ebe;
 }

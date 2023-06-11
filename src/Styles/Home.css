@@ -1,108 +1,190 @@
-.table-without-bg {
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.home-action-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  background-color: transparent;
-  color: #333;
-  margin-top: -10px;
-  overflow-x: auto; /* Adicionado para rolagem horizontal em telas estreitas */
+  margin-bottom: 20px;
 }
 
-.table-without-bg thead th {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 5px;
-  font-size: 15px;
-  background-color: #141414;
-  color: white;
-  padding: 10px 7px 9px 10px;
-  
-}
-
-.table-without-bg tbody td {
+.home-datePickerContainer {
+  display: flex;
+  align-items: center;
+  background-color: #023e73;
   padding: 10px;
-  font-size: 15px;
-  background-color: #141414;
-  margin: 15px 15px;
   border-radius: 5px;
+  margin-right: 10px;
   color: white;
+}
+
+.home-datePicker {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1.5px solid #ccc;
+  background-color: #fff;
+  font-size: 14px;
+  width: 200px;
+  margin-left: 10px;
+}
+
+.home-addButton,
+.home-editButton,
+.home-deleteButton {
+  background-color: #023e73;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.home-addButton:hover,
+.home-editButton:hover,
+.home-deleteButton:hover {
+  background-color: #04adbf;
+}
+
+.home-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+.home-table th,
+.home-table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.home-table th {
+  background-color: #023e73;
+  font-weight: bold;
+  color: white;
+}
+
+.home-table td {
+  background-color: #f8f8f8;
+  color: #141414;
   font-weight: 600;
 }
 
-.table-without-bg tbody tr:nth-child(odd) {
-  background-color: #333;
-  background-color: transparent;
+.home-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.table-without-bg tbody tr:hover {
-  background-color: #333;
-  background-color: transparent;
+.home-table tbody tr:hover {
+  background-color: #e5e5e5;
 }
 
-.edit-button,
-.delete-button {
-  background-color: #023E73;
-  border: none;
+.home-dashboard-table-container {
+  margin-top: 20px;
+}
+
+.home-dashboard-table-container .home-table {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.home-dashboard-table-container .home-table th,
+.home-dashboard-table-container .home-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.home-dashboard-table-container .home-table th#description,
+.home-dashboard-table-container .home-table td#description {
+  width: 30%;
+  text-align: left;
+}
+
+.home-dashboard-table-container .home-table th#due-date,
+.home-dashboard-table-container .home-table td#due-date,
+.home-dashboard-table-container .home-table th#value,
+.home-dashboard-table-container .home-table td#value,
+.home-dashboard-table-container .home-table th#status,
+.home-dashboard-table-container .home-table td#status,
+.home-dashboard-table-container .home-table th#created-at,
+.home-dashboard-table-container .home-table td#created-at,
+.home-dashboard-table-container .home-table th#updated-at,
+.home-dashboard-table-container .home-table td#updated-at {
+  width: 15%;
+}
+
+.billing-table {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.billing-table thead {
+  background-color: #023e73;
   color: white;
-  cursor: pointer;
-  padding: 8px 16px;
+}
+
+.billing-table th,
+.billing-table td {
+  padding: 12px;
+  border: 1px solid #ccc;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  border-radius: 5px;
 }
 
-.edit-button:hover {
-  background-color: #04ADBF;
+.billing-table th {
+  font-weight: bold;
 }
 
-.delete-button {
-  background-color: #BF0000;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  border-radius: 5px;
+.billing-table td {
+  background-color: #f2f2f2;
 }
 
-.delete-button:hover {
-  background-color: #FF0000;
+@media (max-width: 1500px) {
+  .home-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .home-container {
+    width: 95%;
+  }
 }
 
 @media (max-width: 768px) {
-  .table-without-bg {
+  .home-container {
+    width: 90%;
+  }
+
+  .home-dashboard-table-container .table-responsive {
     overflow-x: auto;
   }
+}
 
-  .table-without-bg thead th,
-  .table-without-bg tbody td {
-    white-space: nowrap;
-    min-width: 100px; /* Define um tamanho mínimo para as colunas */
+@media (max-width: 576px) {
+  .home-container {
+    width: 95%;
   }
 
-  .table-without-bg thead,
-  .table-without-bg tbody,
-  .table-without-bg th,
-  .table-without-bg td,
-  .table-without-bg tr {
-    display: block;
+  .home-datePickerContainer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .table-without-bg tbody td:before {
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .edit-button,
-  .delete-button {
-    font-size: 12px;
-    padding: 6px 12px; /* Reduz o espaço ocupado pelos botões */
+  .home-datePicker {
+    margin-top: 10px;
+    width: 100%;
   }
 }
