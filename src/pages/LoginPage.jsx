@@ -7,6 +7,7 @@ import "../Styles/LoginPage.css";
 function LoginPage({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
 
@@ -20,9 +21,17 @@ function LoginPage({ onLogin }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await authContext.login(email, password);
-    onLogin(event);
-    navigate("/");
+    try {
+      await authContext.login(email, password);
+      onLogin(event);
+      navigate("/");
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Erro ao efetuar login");
+      }
+    }
   };
 
   const handleForgotPassword = () => {
@@ -38,7 +47,7 @@ function LoginPage({ onLogin }) {
   };
 
   return (
-    <div className="login-page" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+    <div className="login-page">
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <input
@@ -60,11 +69,12 @@ function LoginPage({ onLogin }) {
             required
           />
         </div>
+        {error && <div className="error-message">{error}</div>}
         <div className="btLogin-container">
           <button type="submit" className="log-in-btLogin">
             Entrar
           </button>
-          <div className="btLogin-wrapper" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", width: "100%" }}>
+          <div className="btLogin-wrapper">
             <Link to="/forgot" className="link">
               Esqueci minha senha
             </Link>
