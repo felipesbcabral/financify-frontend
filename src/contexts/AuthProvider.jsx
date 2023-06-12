@@ -15,17 +15,17 @@ export const AuthProvider = ({ children }) => {
         Email: email,
         Password: password,
       });
+  
       const { account, token } = response.data;
-
-      // Armazene o token JWT no local storage ou em um cookie
       localStorage.setItem("token", token);
-
+  
       setAuthenticated(true);
       setUserId(account.Id);
       setError(null);
-      setLoginResponse(response.data); // Atualize o objeto de resposta do login
+      setLoginResponse(response.data);
     } catch (error) {
-      setError("Erro ao efetuar login");
+      setError(error.response.data.message); // Definir o erro da resposta do servidor como mensagem de erro
+      throw error; // Lançar o erro para ser capturado no front-end
     }
   };
 
