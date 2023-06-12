@@ -1,3 +1,11 @@
+.container {
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
 .form-cadastro {
   max-width: 600px;
   margin: 0 auto;
@@ -23,23 +31,29 @@
   box-sizing: border-box;
 }
 
-.button-container {
+.btCadastro-container {
+  text-align: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .btn-cadastrar {
-  background-color: #009688;
+  display: inline-block;
+  background-color: #3c0ebe;
   color: #fff;
   padding: 10px;
+  margin-right: 10px; /* Ajusta o espaçamento entre os botões */
 }
 
 .btn-voltar {
+  display: inline-block;
   background-color: #574f66;
-  color: #870a0a;
+  color: #3c0ebe;
   padding: 10px;
-  margin-left: 100px;
 }
+
 
 /* Estilos responsivos */
 @media (max-width: 600px) {
@@ -47,7 +61,7 @@
     max-width: 100%;
     margin: 0 10px;
   }
-  
+
   .btn-voltar {
     margin-left: 0;
     margin-top: 10px;

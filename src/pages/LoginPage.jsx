@@ -38,7 +38,7 @@ function LoginPage({ onLogin }) {
   };
 
   return (
-    <div className="login-page">
+    <div className="login-page" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <input
@@ -60,14 +60,15 @@ function LoginPage({ onLogin }) {
             required
           />
         </div>
-        <div className="button-container">
-          <button type="submit" className="log-in-button">
+        <div className="btLogin-container">
+          <button type="submit" className="log-in-btLogin">
             Entrar
           </button>
-          <div className="button-wrapper">
+          <div className="btLogin-wrapper" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", width: "100%" }}>
             <Link to="/forgot" className="link">
               Esqueci minha senha
             </Link>
+            <span className="link-divider">|</span>
             <Link to="/register" className="link">
               Criar uma nova conta
             </Link>

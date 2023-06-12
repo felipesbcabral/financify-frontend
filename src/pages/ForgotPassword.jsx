@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../Styles/New.module.css";
-import "../Styles/EsqueciSenha.css"; // <--- Adicione essa linha
+import "../Styles/EsqueciSenha.css"; 
 
 const EsqueciSenha = (props) => {
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -22,7 +21,7 @@ const EsqueciSenha = (props) => {
 
   return (
     <div className="container">
-      <h1 className={styles.title}>Esqueci a Senha</h1>
+      <h1 className="title">Esqueci a Senha</h1>
       <form onSubmit={handleSubmit} className="form-cadastro">
         <div className="form-group">
           <label htmlFor="nomeUsuario">Nome de Usuário:</label>

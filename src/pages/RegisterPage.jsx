@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../Styles/New.module.css";
 import "../Styles/CadastroUsuarios.css";
 import axios from "axios";
 
@@ -47,7 +46,7 @@ const CadastroUsuarios = () => {
 
   return (
     <div className="container">
-      <h1 className={styles.title}>Cadastro de Usuários</h1>
+      <h1 className="title">Cadastro de Usuários</h1>
       <form onSubmit={handleSubmit} className="form-cadastro">
         <div className="form-group">
           <label htmlFor="nomeUsuario">Primeiro nome:</label>
@@ -86,7 +85,7 @@ const CadastroUsuarios = () => {
           />
         </div>
         {error && <div className="error-message">{error}</div>}
-        <div className="button-container">
+        <div className="btCadastro-container">
           <button type="submit" className="btn-cadastrar">
             Cadastrar
           </button>
