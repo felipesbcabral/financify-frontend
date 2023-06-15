@@ -15,6 +15,8 @@ import DataPage from "./pages/dados";
 import PrivacyPage from "./pages/privacidade";
 import ErrorPage from "./pages/Erro";
 import axios from "axios";
+import InitialPage from "./pages/initialPage";
+
 
 axios.defaults.baseURL = 'http://localhost:5294';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -43,6 +45,7 @@ export default function App() {
                 path="/login"
                 element={<LoginPage onLogin={handleLogin} />}
               />
+              <Route path="/" element={<InitialPage />} />
               <Route path="/forgot" element={<ForgotPassword />} />
               <Route path="/register" element={<RegisterPage />} />
             </>
