@@ -15,6 +15,7 @@ import HelpPage from "./pages/support";
 import DataPage from "./pages/dados";
 import PrivacyPage from "./pages/privacidade";
 import ErrorPage from "./pages/Erro";
+import InitialPage from "./pages/initialPage";
 
 export default function App() {
   const [logado, setLogado] = useState(false);
@@ -40,6 +41,7 @@ export default function App() {
                 path="/login"
                 element={<LoginPage onLogin={handleLogin} />}
               />
+              <Route path="/" element={<InitialPage />} />
               <Route path="/forgot" element={<ForgotPassword />} />
               <Route path="/register" element={<RegisterPage />} />
             </>
