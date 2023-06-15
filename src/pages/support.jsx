@@ -11,7 +11,7 @@ function SupportPage() {
         <li>Telefone: (XX) XXXX-XXXX</li>
       </ul>
       <p>Nosso horário de atendimento é de segunda a sexta, das 9h às 18h.</p>
-      <Link to="/">Voltar para a página inicial</Link>
+      <Link to="/home">Voltar para a página inicial</Link>
     </div>
   );
 }

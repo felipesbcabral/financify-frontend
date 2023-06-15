@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 
 export const AuthContext = React.createContext();
@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
   const [error, setError] = useState(null);
-  const [loginResponse, setLoginResponse] = useState(null); // Adicione esta linha
+  const [loginResponse, setLoginResponse] = useState(null);
 
   const login = async (email, password) => {
     try {
@@ -15,17 +15,18 @@ export const AuthProvider = ({ children }) => {
         Email: email,
         Password: password,
       });
-  
+
       const { account, token } = response.data;
       localStorage.setItem("token", token);
-  
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
       setAuthenticated(true);
       setUserId(account.Id);
       setError(null);
       setLoginResponse(response.data);
     } catch (error) {
-      setError(error.response.data.message); // Definir o erro da resposta do servidor como mensagem de erro
-      throw error; // Lançar o erro para ser capturado no front-end
+      setError(error.response.data.message);
+      throw error;
     }
   };
 
@@ -33,7 +34,27 @@ export const AuthProvider = ({ children }) => {
     setAuthenticated(false);
     setUserId(null);
     setError(null);
-    setLoginResponse(null); // Adicione esta linha para limpar o objeto de resposta do login
+    setLoginResponse(null);
+  };
+
+  const getCharge = async (chargeId) => {
+    try {
+      const response = await axios.get(`http://localhost:5294/charges/${chargeId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching charge:", error);
+      throw error;
+    }
+  };
+
+  const updateCharge = async (chargeId, updatedCharge) => {
+    try {
+      const response = await axios.put(`http://localhost:5294/charges/${chargeId}`, updatedCharge);
+      return response.data;
+    } catch (error) {
+      console.error("Error updating charge:", error);
+      throw error;
+    }
   };
 
   const authContextValue = {
@@ -42,7 +63,9 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     error,
-    loginResponse, // Adicione esta linha para disponibilizar o objeto de resposta do login
+    loginResponse,
+    getCharge,
+    updateCharge,
   };
 
   return (

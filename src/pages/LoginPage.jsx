@@ -24,7 +24,7 @@ function LoginPage({ onLogin }) {
     try {
       await authContext.login(email, password);
       onLogin(event);
-      navigate("/");
+      navigate("/home"); // Redirecionar para /home após o login
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message);

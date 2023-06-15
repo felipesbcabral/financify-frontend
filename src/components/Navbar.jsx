@@ -52,7 +52,7 @@ const Sidebar = (props) => {
     {
       display: "Home",
       icon: <i className="bx bx-home"></i>,
-      to: "/",
+      to: "/home",
       section: "",
     },
     {
