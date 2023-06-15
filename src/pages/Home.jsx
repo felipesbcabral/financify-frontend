@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Button } from "react-bootstrap";
-import { NavLink, useParams } from "react-router-dom";
+import { Table, Button, Modal } from "react-bootstrap";
+import { NavLink, useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../Styles/Home.css";
 
 import { AuthContext } from "../contexts/AuthProvider";
@@ -14,6 +16,11 @@ const Home = () => {
   const authContext = useContext(AuthContext);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const navigate = useNavigate();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedChargeId, setSelectedChargeId] = useState(null);
+  const [successMessageShown, setSuccessMessageShown] = useState(false); // Novo estado
+  const location = useLocation();
 
   useEffect(() => {
     const fetchBillingData = async () => {
@@ -21,14 +28,11 @@ const Home = () => {
         const token = authContext.loginResponse?.token;
         const accountId = authContext.loginResponse?.account?.id;
 
-        const response = await axios.get(
-          `http://localhost:5294/charge/accounts/${accountId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`/charge/accounts/${accountId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setBillingData(response.data);
       } catch (error) {
@@ -39,12 +43,44 @@ const Home = () => {
     fetchBillingData();
   }, [authContext.loginResponse]);
 
+  useEffect(() => {
+    if (location.state && location.state.successMessage) {
+      toast.success(location.state.successMessage);
+      navigate("/home"); // Navega para a página inicial sem o estado da localização
+    }
+  }, [location, navigate]);
+
   const handleEditCharge = (chargeId) => {
-    // Navegar para a página de edição com o ID da cobrança
+    navigate(`/edit/${chargeId}`);
   };
 
-  const handleDeleteCharge = (chargeId) => {
-    // Implemente sua lógica para exclusão da cobrança aqui
+  const handleShowDeleteModal = (chargeId) => {
+    setSelectedChargeId(chargeId);
+    setShowDeleteModal(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      const token = authContext.loginResponse?.token;
+      await axios.delete(`/charge/${selectedChargeId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const updatedBillingData = billingData.filter(
+        (charge) => charge.id !== selectedChargeId
+      );
+      setBillingData(updatedBillingData);
+      toast.success("Cobrança excluída com sucesso!");
+    } catch (error) {
+      console.error("Erro ao excluir cobrança:", error);
+    } finally {
+      setShowDeleteModal(false);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -65,6 +101,27 @@ const Home = () => {
     }
     return true;
   });
+
+  const renderDeleteModal = () => {
+    return (
+      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Exclusão</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tem certeza de que deseja excluir essa cobrança?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDeleteModal}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={handleConfirmDelete}>
+            Excluir
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
 
   return (
     <div className="home-container">
@@ -91,6 +148,7 @@ const Home = () => {
           <Table striped bordered hover className="home-table billing-table">
             <thead>
               <tr>
+                <th>Nome</th>
                 <th>Descrição</th>
                 <th>Vencimento</th>
                 <th>Valor</th>
@@ -103,6 +161,7 @@ const Home = () => {
             <tbody>
               {filteredBillingData.map((charge) => (
                 <tr key={charge.id}>
+                  <td>{charge.name}</td>
                   <td>{charge.description}</td>
                   <td>{formatDate(charge.dueDate)}</td>
                   <td>{charge.value}</td>
@@ -120,7 +179,7 @@ const Home = () => {
                     <Button
                       variant="danger"
                       className="home-deleteButton"
-                      onClick={() => handleDeleteCharge(charge.id)}
+                      onClick={() => handleShowDeleteModal(charge.id)}
                     >
                       Excluir
                     </Button>
@@ -131,6 +190,8 @@ const Home = () => {
           </Table>
         </div>
       </div>
+      <ToastContainer />
+      {renderDeleteModal()}
     </div>
   );
 };

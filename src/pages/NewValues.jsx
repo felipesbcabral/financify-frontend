@@ -71,13 +71,13 @@ const NewValues = () => {
   };
 
   const handleClick = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
     <div className="new-values-container">
       <form className="new-values-form" onSubmit={handleSubmit}>
-        <h2 className="new-values-title">Adicionar Cobranças</h2>
+        <h2 className="new-values-title">Criar cobrança</h2>
         <div className="new-values-descricao">
           <label className="new-values-label" htmlFor="Name">
             Nome:

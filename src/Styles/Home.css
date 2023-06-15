@@ -188,3 +188,17 @@
     width: 100%;
   }
 }
+
+
+.success-message {
+  background-color: #62c46c;
+  color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.success-message span {
+  margin-right: 5px;
+}
