@@ -1,3 +1,67 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background-color: white;
+  border-radius: 4px;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.modal-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-button-cancel {
+  background-color: #023e73;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.modal-button-delete {
+  background-color: #af0514;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
 .home-container {
   display: flex;
   flex-direction: column;
@@ -31,14 +95,27 @@
   border: 1.5px solid #ccc;
   background-color: #fff;
   font-size: 14px;
-  width: 200px;
+  width: 150px;
   margin-left: 10px;
 }
 
 .home-addButton,
-.home-editButton,
-.home-deleteButton {
+.home-editButton {
   background-color: #023e73;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.home-deleteButton {
+  background-color: #af0514;
   border: none;
   color: white;
   cursor: pointer;
@@ -53,9 +130,11 @@
 }
 
 .home-addButton:hover,
-.home-editButton:hover,
+.home-editButton:hover {
+  background-color: #035ba8;
+}
 .home-deleteButton:hover {
-  background-color: #04adbf;
+  background-color: #e20404;
 }
 
 .home-table {
@@ -151,7 +230,7 @@
   background-color: #f2f2f2;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1900px) {
   .home-container {
     width: 90%;
   }
@@ -173,7 +252,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 300px) {
   .home-container {
     width: 95%;
   }

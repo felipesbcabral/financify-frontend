@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Table, Button, Modal } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { NavLink, useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-modal";
 import "../Styles/Home.css";
 
 import { AuthContext } from "../contexts/AuthProvider";
@@ -84,8 +85,9 @@ const Home = () => {
   };
 
   const formatDate = (dateString) => {
-    // Implemente sua lógica de formatação de data aqui
-    return dateString;
+    const date = new Date(dateString);
+    const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    return formattedDate;
   };
 
   const handleDateRangeChange = (dates) => {
@@ -101,27 +103,6 @@ const Home = () => {
     }
     return true;
   });
-
-  const renderDeleteModal = () => {
-    return (
-      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmar Exclusão</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Tem certeza de que deseja excluir essa cobrança?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseDeleteModal}>
-            Cancelar
-          </Button>
-          <Button variant="danger" onClick={handleConfirmDelete}>
-            Excluir
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  };
 
   return (
     <div className="home-container">
@@ -148,26 +129,20 @@ const Home = () => {
           <Table striped bordered hover className="home-table billing-table">
             <thead>
               <tr>
-                <th>Nome</th>
                 <th>Descrição</th>
                 <th>Vencimento</th>
                 <th>Valor</th>
                 <th>Status</th>
-                <th>Criado em</th>
-                <th>Atualizado em</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
               {filteredBillingData.map((charge) => (
                 <tr key={charge.id}>
-                  <td>{charge.name}</td>
                   <td>{charge.description}</td>
                   <td>{formatDate(charge.dueDate)}</td>
                   <td>{charge.value}</td>
                   <td>{charge.status}</td>
-                  <td>{formatDate(charge.createdAt)}</td>
-                  <td>{formatDate(charge.updatedAt)}</td>
                   <td>
                     <Button
                       variant="primary"
@@ -191,7 +166,32 @@ const Home = () => {
         </div>
       </div>
       <ToastContainer />
-      {renderDeleteModal()}
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal-container">
+            <h2 className="modal-header">Confirmar Exclusão</h2>
+            <div className="modal-body">
+              Tem certeza de que deseja excluir essa cobrança?
+            </div>
+            <div className="modal-footer">
+              <Button
+                variant="secondary"
+                onClick={handleCloseDeleteModal}
+                className="modal-button-cancel"
+              >
+                Cancelar
+              </Button>
+              <Button
+                variant="danger"
+                onClick={handleConfirmDelete}
+                className="modal-button-delete"
+              >
+                Excluir
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
