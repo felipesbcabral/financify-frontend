@@ -28,11 +28,7 @@ const Home = () => {
         const token = authContext.loginResponse?.token;
         const accountId = authContext.loginResponse?.account?.id;
 
-        const response = await axios.get(`/charge/accounts/${accountId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(`/charge/accounts/${accountId}`);
 
         setBillingData(response.data);
       } catch (error) {
@@ -66,11 +62,7 @@ const Home = () => {
   const handleConfirmDelete = async () => {
     try {
       const token = authContext.loginResponse?.token;
-      await axios.delete(`/charge/${selectedChargeId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(`/charge/${selectedChargeId}`);
       const updatedBillingData = billingData.filter(
         (charge) => charge.id !== selectedChargeId
       );

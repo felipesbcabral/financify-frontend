@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:5294/v1/login", {
+      const response = await axios.post("/v1/login", {
         Email: email,
         Password: password,
       });
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   const getCharge = async (chargeId) => {
     try {
-      const response = await axios.get(`http://localhost:5294/charges/${chargeId}`);
+      const response = await axios.get(`/charges/${chargeId}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching charge:", error);
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateCharge = async (chargeId, updatedCharge) => {
     try {
-      const response = await axios.put(`http://localhost:5294/charges/${chargeId}`, updatedCharge);
+      const response = await axios.put(`/charges/${chargeId}`, updatedCharge);
       return response.data;
     } catch (error) {
       console.error("Error updating charge:", error);

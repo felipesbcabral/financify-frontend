@@ -63,7 +63,7 @@ const EditChargePage = () => {
     };
 
     try {
-      await axios.put(`http://localhost:5294/charge/${chargeId}`, updatedCharge);
+      await axios.put(`/charge/${chargeId}`, updatedCharge);
       navigate("/home", { state: { successMessage: "Cobrança atualizada com sucesso." } });
     } catch (error) {
       console.error("Error updating charge:", error);
