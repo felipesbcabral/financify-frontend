@@ -54,15 +54,8 @@ const NewValues = () => {
       const token = authContext.loginResponse?.token;
 
       const response = await axios.post(
-        `http://localhost:5294/charge/accounts/${authContext.loginResponse?.account?.id}`,
-        newChargeRequest,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+        `/charge/accounts/${authContext.loginResponse?.account?.id}`,
+        newChargeRequest);
       console.log("Cobrança criada com sucesso:", response.data);
       navigate("/");
     } catch (error) {
