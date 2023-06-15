@@ -99,7 +99,21 @@
   margin-left: 10px;
 }
 
-.home-addButton,
+.home-addButton {
+  background-color: #023e73;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px;
+  border-radius: 5px;
+  width: 150px;
+  transition: background-color 0.3s ease;
+}
 .home-editButton {
   background-color: #023e73;
   border: none;
@@ -112,6 +126,7 @@
   font-size: 14px;
   margin: 4px;
   border-radius: 5px;
+  width: 70px;
   transition: background-color 0.3s ease;
 }
 .home-deleteButton {
@@ -125,6 +140,7 @@
   display: inline-block;
   font-size: 14px;
   margin: 4px;
+  width: 70px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
@@ -182,7 +198,7 @@
 
 .home-dashboard-table-container .home-table th,
 .home-dashboard-table-container .home-table td {
-  padding: 12px;
+  padding: 8px;
   text-align: center;
 }
 
