@@ -79,6 +79,7 @@ const NewValues = () => {
             className="new-values-inputtext"
             type="text"
             id="name"
+            placeholder="Digite o nome"
             value={name}
             onChange={handleNameChange}
           />
@@ -91,6 +92,7 @@ const NewValues = () => {
             className="new-values-inputtext"
             type="text"
             id="description"
+            placeholder="Digite a descrição"
             value={description}
             onChange={handleDescriptionChange}
           />
@@ -103,6 +105,7 @@ const NewValues = () => {
             className="new-values-inputtext"
             type="date"
             id="dueDate"
+            placeholder="Selecione a data de vencimento"
             value={dueDate}
             onChange={handleDueDateChange}
           />
@@ -115,6 +118,7 @@ const NewValues = () => {
             className="new-values-inputtext"
             type="number"
             id="value"
+            placeholder="Digite o valor"
             value={value}
             onChange={handleValueChange}
           />
@@ -130,9 +134,9 @@ const NewValues = () => {
             onChange={handleStatusChange}
           >
             <option value="">Selecione</option>
-            <option value="Payed">Payed</option>
-            <option value="Expired">Expired</option>
-            <option value="Pending">Pending</option>
+            <option value="Payed">Pago</option>
+            <option value="Expired">Expirado</option>
+            <option value="Pending">Pendente</option>
           </select>
         </div>
         <div className="new-values-button-container">

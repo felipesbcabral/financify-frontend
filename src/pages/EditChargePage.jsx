@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthProvider";
 import axios from "axios";
 import "../Styles/EditCharges.css";
 
@@ -12,15 +11,15 @@ const EditChargePage = () => {
   const [value, setValue] = useState("");
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
-  const { updateCharge, getCharge } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchCharge = async () => {
       try {
-        const charge = await getCharge(chargeId);
+        const response = await axios.get(`/charge/${chargeId}`);
+        const charge = response.data;
         setName(charge.name);
         setDescription(charge.description);
-        setDueDate(charge.dueDate);
+        setDueDate(formatDate(charge.dueDate));
         setValue(charge.value);
         setStatus(charge.status);
       } catch (error) {
@@ -29,7 +28,12 @@ const EditChargePage = () => {
     };
 
     fetchCharge();
-  }, [chargeId, getCharge]);
+  }, [chargeId]);
+
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+    return formattedDate;
+  };
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -64,7 +68,9 @@ const EditChargePage = () => {
 
     try {
       await axios.put(`/charge/${chargeId}`, updatedCharge);
-      navigate("/home", { state: { successMessage: "Cobrança atualizada com sucesso." } });
+      navigate("/home", {
+        state: { successMessage: "Cobrança atualizada com sucesso." },
+      });
     } catch (error) {
       console.error("Error updating charge:", error);
       // Lógica adicional em caso de erro na atualização da cobrança (charge), se necessário...
@@ -138,17 +144,21 @@ const EditChargePage = () => {
             onChange={handleStatusChange}
           >
             <option value="">Selecione</option>
-            <option value="Payed">Payed</option>
-            <option value="Expired">Expired</option>
-            <option value="Pending">Pending</option>
+            <option value="Payed">Pago</option>
+            <option value="Expired">Expirado</option>
+            <option value="Pending">Pendente</option>
           </select>
         </div>
         <div className="edit-charge-button-container">
-          <button className="edit-charge-btn-back" type="button" onClick={handleClick}>
-            Voltar
-          </button>
           <button className="edit-charge-btn-save" type="submit">
             Salvar
+          </button>
+          <button
+            className="edit-charge-btn-back"
+            type="button"
+            onClick={handleClick}
+          >
+            Voltar
           </button>
         </div>
       </form>
