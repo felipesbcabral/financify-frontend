@@ -4,7 +4,7 @@ Este é o repositório do frontend do Financify, um aplicativo de controle finan
 Sobre o Financify
 O Financify é um aplicativo para ajudar no controle financeiro pessoal, permitindo ao usuário cadastrar despesas e receitas e visualizar relatórios que mostram como o dinheiro está sendo gasto.
 
-Este repositório contém o código do frontend do aplicativo. Para o backend, consulte o repositório correspondente.
+Este repositório contém o código do frontend do aplicativo. Para o backend, consulte o repositório correspondente: https://github.com/felipesbcabral/financify-backend
 
 Como executar
 Clone o repositório:
