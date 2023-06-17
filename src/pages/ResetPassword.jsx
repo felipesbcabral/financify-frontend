@@ -39,6 +39,7 @@ const ResetPassword = () => {
       });
 
       alert("Senha redefinida com sucesso!");
+      window.location.href = "/login"; // Redirecionar para a página de login
     } catch (error) {
       console.error("Erro ao redefinir a senha:", error);
       alert("Ocorreu um erro ao redefinir a senha. Por favor, tente novamente.");
