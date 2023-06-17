@@ -17,12 +17,17 @@ const CadastroUsuarios = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "/v1/Account",
+        "http://localhost:5294/v1/Account",
         {
           FirstName: firstName,
           LastName: lastName,
           Password: password,
           Email: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
