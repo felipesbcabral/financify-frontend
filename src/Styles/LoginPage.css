@@ -67,12 +67,12 @@ body {
 }
 
 .btLogin-wrapper btLogin:hover {
-  background-color: #3c0ebe;
+  background-color: #023e73;
 }
 
 .log-in-btLogin {
   margin-top: 20px;
-  background-color: #461bff;
+  background-color: #023e73;
   color: #fff;
   padding: 12px;
   border: none;
@@ -99,7 +99,7 @@ body {
 .link,
 .forgot-password-btLogin,
 .create-account-btLogin {
-  color: #461bff;
+  color: #023e73;
   font-size: 14px;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -114,7 +114,7 @@ body {
 .link:hover,
 .forgot-password-btLogin:hover,
 .create-account-btLogin:hover {
-  color: #3c0ebe;
+  color: #023e73;
 }
 
 .error-message {
@@ -150,12 +150,12 @@ body {
 
 .login-form input[type="email"]:focus,
 .login-form input[type="password"]:focus {
-  border-color: #3c0ebe;
+  border-color: #023e73;
 }
 
 .login-form input[type="email"]:focus,
 .login-form input[type="password"]:focus {
-  border-color: #3c0ebe;
+  border-color: #023e73;
 }
 
 .error-message {
