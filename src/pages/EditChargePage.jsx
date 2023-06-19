@@ -144,9 +144,9 @@ const EditChargePage = () => {
             onChange={handleStatusChange}
           >
             <option value="">Selecione</option>
-            <option value="Payed">Pago</option>
-            <option value="Expired">Expirado</option>
-            <option value="Pending">Pendente</option>
+            <option value="Pago">Pago</option>
+            <option value="Expirado">Expirado</option>
+            <option value="Pendente">Pendente</option>
           </select>
         </div>
         <div className="edit-charge-button-container">
