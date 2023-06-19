@@ -1,0 +1,64 @@
+.account-data-card {
+  width: 400px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.account-data-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.account-data-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.account-data-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account-data-body {
+  text-align: center;
+}
+
+.account-data-container {
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.account-data-title {
+  color: #000;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.account-data-info {
+  color: #000;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.account-data-avatar-label {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.account-data-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}

@@ -1,0 +1,30 @@
+.config-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .config-item {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .config-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .config-text {
+    font-size: 18px;
+  }
+  
+  .config-link {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .config-link:hover {
+    color: #555;
+  }
+  

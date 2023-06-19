@@ -21,22 +21,6 @@ const DepositarSaldo = () => {
     setMetodoPagamento(event.target.value);
   };
 
-  const handleNumeroCartaoChange = (event) => {
-    setNumeroCartao(event.target.value);
-  };
-
-  const handleDataValidadeChange = (event) => {
-    setDataValidade(event.target.value);
-  };
-
-  const handleCodigoSegurancaChange = (event) => {
-    setCodigoSeguranca(event.target.value);
-  };
-
-  const handleSenhaChange = (event) => {
-    setSenha(event.target.value);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -90,82 +74,36 @@ const DepositarSaldo = () => {
         <h2 className="depositar-saldo-title">Depósito</h2>
         {mensagem && <p>{mensagem}</p>}
         <form onSubmit={handleSubmit}>
-          <label htmlFor="valor" className="depositar-saldo-label">
-            Valor:
-          </label>
-          <input
-            type="text"
-            id="valor"
-            value={valor}
-            onChange={handleValorChange}
-            className="depositar-saldo-inputtext"
-          />
+          <div className="depositar-saldo-descricao">
+            <label className="depositar-saldo-label" htmlFor="valor" style={{ color: "#000" }}>
+              Valor:
+            </label>
+            <input
+              className="depositar-saldo-inputtext"
+              type="text"
+              id="valor"
+              value={valor}
+              onChange={handleValorChange}
+            />
+          </div>
 
-          <label htmlFor="metodoPagamento" className="depositar-saldo-label">
-            Método de Pagamento:
-          </label>
-          <select
-            id="metodoPagamento"
-            value={metodoPagamento}
-            onChange={handleMetodoPagamentoChange}
-            className="depositar-saldo-select"
-          >
-            <option value="">Selecione um método de pagamento</option>
-            <option value="cartaoCredito">Cartão de Crédito</option>
-            <option value="transferenciaBancaria">Transferência Bancária</option>
-            <option value="carteiraDigital">Carteira Digital</option>
-          </select>
-
-          {metodoPagamento === "cartaoCredito" && (
-            <>
-              <label htmlFor="numeroCartao" className="depositar-saldo-label">
-                Número do Cartão:
-              </label>
-              <input
-                type="text"
-                id="numeroCartao"
-                value={numeroCartao}
-                onChange={handleNumeroCartaoChange}
-                className="depositar-saldo-inputtext"
-              />
-
-              <label htmlFor="dataValidade" className="depositar-saldo-label">
-                Data de Validade:
-              </label>
-              <input
-                type="text"
-                id="dataValidade"
-                value={dataValidade}
-                onChange={handleDataValidadeChange}
-                className="depositar-saldo-inputtext"
-              />
-
-              <label htmlFor="codigoSeguranca" className="depositar-saldo-label">
-                Código de Segurança:
-              </label>
-              <input
-                type="text"
-                id="codigoSeguranca"
-                value={codigoSeguranca}
-                onChange={handleCodigoSegurancaChange}
-                className="depositar-saldo-inputtext"
-              />
-            </>
-          )}
-
-          <label htmlFor="senha" className="depositar-saldo-label">
-            Senha:
-          </label>
-          <input
-            type="password"
-            id="senha"
-            value={senha}
-            onChange={handleSenhaChange}
-            className="depositar-saldo-inputtext"
-          />
-
+          <div className="depositar-saldo-descricao">
+            <label className="depositar-saldo-label" htmlFor="metodoPagamento" style={{ color: "#000" }}>
+              Método de Pagamento:
+            </label>
+            <select
+              className="depositar-saldo-select"
+              id="metodoPagamento"
+              value={metodoPagamento}
+              onChange={handleMetodoPagamentoChange}
+            >
+              <option value="">Selecione um método de pagamento</option>
+              <option value="transferenciaBancaria">Transferência Bancária</option>
+              <option value="carteiraDigital">Carteira Digital</option>
+            </select>
+          </div>
           <div className="depositar-saldo-button-container">
-            <button type="submit" className="depositar-saldo-btn-depositar">
+            <button className="depositar-saldo-btn-depositar" type="submit">
               Depositar
             </button>
             <button type="button" onClick={handleCancelar}>
