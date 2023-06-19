@@ -1,21 +1,28 @@
 import React from "react";
 import { FaUser, FaLock, FaQuestionCircle, FaRegLifeRing } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import "../Styles/config.css";
 
 function ConfigScreen() {
   return (
-    <div>
-      <div>
-        <Link to="/dados"><FaUser size={50} /></Link>
-        <p>Dados da conta</p>
+    <div className="config-container">
+      <div className="config-item">
+        <Link to="/dados" className="config-link">
+          <FaUser className="config-icon" />
+          <p className="config-text">Dados da conta</p>
+        </Link>
       </div>
-      <div>
-        <Link to="/privacidade"><FaLock size={50} /></Link>
-        <p>Privacidade e segurança</p>
+      <div className="config-item">
+        <Link to="/privacidade" className="config-link">
+          <FaLock className="config-icon" />
+          <p className="config-text">Privacidade e segurança</p>
+        </Link>
       </div>
-      <div>
-        <Link to="/ajuda"><FaRegLifeRing size={50} /></Link>
-        <p>Suporte</p>
+      <div className="config-item">
+        <Link to="/ajuda" className="config-link">
+          <FaRegLifeRing className="config-icon" />
+          <p className="config-text">Suporte</p>
+        </Link>
       </div>
     </div>
   );

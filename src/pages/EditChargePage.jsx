@@ -84,9 +84,9 @@ const EditChargePage = () => {
   return (
     <div className="edit-charge-container">
       <form className="edit-charge-form" onSubmit={handleSubmit}>
-        <h2 className="edit-charge-title">Editar Cobrança</h2>
+        <h2 className="edit-charge-title" style={{ color: "#000" }}>Editar Cobrança</h2>
         <div className="edit-charge-descricao">
-          <label className="edit-charge-label" htmlFor="name">
+          <label className="edit-charge-label" htmlFor="name" style={{ color: "#000" }}>
             Nome:
           </label>
           <input
@@ -98,7 +98,7 @@ const EditChargePage = () => {
           />
         </div>
         <div className="edit-charge-descricao">
-          <label className="edit-charge-label" htmlFor="description">
+          <label className="edit-charge-label" htmlFor="description" style={{ color: "#000" }}>
             Descrição:
           </label>
           <input
@@ -110,7 +110,7 @@ const EditChargePage = () => {
           />
         </div>
         <div className="edit-charge-descricao">
-          <label className="edit-charge-label" htmlFor="dueDate">
+          <label className="edit-charge-label" htmlFor="dueDate" style={{ color: "#000" }}>
             Data de Vencimento:
           </label>
           <input
@@ -122,7 +122,7 @@ const EditChargePage = () => {
           />
         </div>
         <div className="edit-charge-descricao">
-          <label className="edit-charge-label" htmlFor="value">
+          <label className="edit-charge-label" htmlFor="value" style={{ color: "#000" }}>
             Valor:
           </label>
           <input
@@ -134,7 +134,7 @@ const EditChargePage = () => {
           />
         </div>
         <div className="edit-charge-descricao">
-          <label className="edit-charge-label" htmlFor="status">
+          <label className="edit-charge-label" htmlFor="status" style={{ color: "#000" }}>
             Status:
           </label>
           <select

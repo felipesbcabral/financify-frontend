@@ -55,7 +55,8 @@ const NewValues = () => {
 
       const response = await axios.post(
         `/charge/accounts/${authContext.loginResponse?.account?.id}`,
-        newChargeRequest);
+        newChargeRequest
+      );
       console.log("Cobrança criada com sucesso:", response.data);
       navigate("/");
     } catch (error) {
@@ -70,9 +71,11 @@ const NewValues = () => {
   return (
     <div className="new-values-container">
       <form className="new-values-form" onSubmit={handleSubmit}>
-        <h2 className="new-values-title">Criar cobrança</h2>
+        <h2 className="new-values-title" style={{ color: "#000" }}>
+          Criar cobrança
+        </h2>
         <div className="new-values-descricao">
-          <label className="new-values-label" htmlFor="Name">
+          <label className="new-values-label" htmlFor="Name" style={{ color: "#000" }}>
             Nome:
           </label>
           <input
@@ -85,7 +88,7 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-descricao">
-          <label className="new-values-label" htmlFor="Description">
+          <label className="new-values-label" htmlFor="Description" style={{ color: "#000" }}>
             Descrição:
           </label>
           <input
@@ -98,7 +101,7 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-descricao">
-          <label className="new-values-label" htmlFor="DueDate">
+          <label className="new-values-label" htmlFor="DueDate" style={{ color: "#000" }}>
             Data de Vencimento:
           </label>
           <input
@@ -111,7 +114,7 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-valor">
-          <label className="new-values-label" htmlFor="Value">
+          <label className="new-values-label" htmlFor="Value" style={{ color: "#000" }}>
             Valor:
           </label>
           <input
@@ -124,7 +127,7 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-status">
-          <label className="new-values-label" htmlFor="Status">
+          <label className="new-values-label" htmlFor="Status" style={{ color: "#000" }}>
             Status:
           </label>
           <select
@@ -140,11 +143,11 @@ const NewValues = () => {
           </select>
         </div>
         <div className="new-values-button-container">
-          <button className="new-values-btn-back" onClick={handleClick}>
-            Voltar
-          </button>
-          <button className="new-values-btn-save" type="submit">
+          <button className="new-values-btn-save" type="submit" style={{ backgroundColor: "#023e73", color: "#fff" }}>
             Salvar
+          </button>
+          <button className="new-values-btn-back" onClick={handleClick} style={{ backgroundColor: "#023e73", color: "#fff" }}>
+            Voltar
           </button>
         </div>
       </form>
