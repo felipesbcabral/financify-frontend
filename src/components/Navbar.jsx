@@ -62,16 +62,16 @@ const Sidebar = (props) => {
       section: "new",
     },
     {
-      display: "Editar",
-      icon: <i className="bx bx-calendar"></i>,
-      to: "/edit",
-      section: "calendar",
-    },
-    {
       display: "Configuração",
       icon: <i className="bx bx-user"></i>,
       to: "/config",
       section: "user",
+    },
+    {
+      display: "Depositar",
+      icon: <i className="bx bx-money"></i>,
+      to: "/deposit",
+      section: "deposit",
     },
   ];
 

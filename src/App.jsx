@@ -17,7 +17,7 @@ import ErrorPage from "./pages/Erro";
 import axios from "axios";
 import InitialPage from "./pages/initialPage";
 import ResetPassword from "./pages/ResetPassword";
-
+import DepositPage from "./pages/DepositarSaldo";
 
 axios.defaults.baseURL = 'http://localhost:5294';
 axios.defaults.headers.get['Content-Type'] = 'application/json';
@@ -67,6 +67,7 @@ export default function App() {
               <Route path="/ajuda" element={<HelpPage />} />
               <Route path="/dados" element={<DataPage />} />
               <Route path="/privacidade" element={<PrivacyPage />} />
+              <Route path="/deposit" element={<DepositPage />} /> // Nova rota "deposit"
             </Route>
           )}
           <Route path="*" element={<ErrorPage />} />

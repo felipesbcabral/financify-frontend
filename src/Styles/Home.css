@@ -297,3 +297,14 @@
 .success-message span {
   margin-right: 5px;
 }
+
+.home-balance {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.balance-amount {
+  color: black;
+}
