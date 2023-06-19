@@ -45,6 +45,7 @@
   color: #fff;
   padding: 10px;
   margin-right: 10px; /* Ajusta o espaçamento entre os botões */
+  min-width: 150px; /* Tamanho fixo dos botões */
 }
 
 .btn-voltar {
@@ -52,6 +53,7 @@
   background-color: #574f66;
   color: #3c0ebe;
   padding: 10px;
+  min-width: 150px; /* Tamanho fixo dos botões */
 }
 
 
@@ -62,8 +64,15 @@
     margin: 0 10px;
   }
 
+  .btCadastro-container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0px;
+
+  }
+
   .btn-voltar {
-    margin-left: 0;
+    margin-right: 10px;
     margin-top: 10px;
   }
 }

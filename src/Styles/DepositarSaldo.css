@@ -72,3 +72,6 @@
 .depositar-saldo-button-container button[type="button"]:hover {
   background-color: #035ba8;
 }
+.depositar-saldo-btn-depositar:hover {
+  background-color: #035ba8;
+}
