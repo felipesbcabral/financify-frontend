@@ -1,35 +1,58 @@
 .privacy-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.privacy-card {
+  width: 500px;
+  padding: 30px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.privacy-card h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.privacy-card p {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.privacy-card ul {
+  list-style-type: disc;
+  font-size: 16px;
+}
+
+.privacy-card li {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
   .privacy-card {
-    width: 500px;
-    padding: 30px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 20px;
   }
-  
+
   .privacy-card h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 24px;
   }
-  
+
   .privacy-card p {
-    color:black ;
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .privacy-card ul {
-    list-style-type: disc;
     font-size: 16px;
+    margin-bottom: 15px;
   }
-  
+
+  .privacy-card ul {
+    font-size: 14px;
+  }
+
   .privacy-card li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
-  
+}

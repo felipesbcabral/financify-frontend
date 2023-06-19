@@ -62,3 +62,23 @@
   object-fit: cover;
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+  .account-data-card {
+    width: 100%;
+  }
+
+  .account-data-avatar {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .account-data-title {
+    font-size: 20px;
+  }
+  
+  .account-data-info {
+    font-size: 16px;
+  }
+}
+
