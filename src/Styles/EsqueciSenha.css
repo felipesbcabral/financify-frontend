@@ -71,12 +71,22 @@
   background-color: #3c0ebe;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .form-cadastro {
-    width: 90%;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .button-container {
-    width: 100%;
+    display: flex;
+    flex-direction: column; /* Altere de row para column */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-cadastrar,
+  .btn-voltar {
+    width: 100px; /* Adicione o tamanho desejado aqui */
   }
 }
+
