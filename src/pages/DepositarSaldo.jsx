@@ -1,10 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import "../Styles/DepositarSaldo.css";
 
 const DepositarSaldo = () => {
-  const { loginResponse } = useContext(AuthContext); // Obter o loginResponse do contexto
+  const history = useHistory();
+  const { loginResponse } = useContext(AuthContext);
   const [valor, setValor] = useState("");
   const [metodoPagamento, setMetodoPagamento] = useState("");
   const [numeroCartao, setNumeroCartao] = useState("");
@@ -30,8 +32,10 @@ const DepositarSaldo = () => {
     }
 
     try {
-      const userId = loginResponse?.id; // Obter o ID do usuário do loginResponse
-      console.log("Depósito realizado com sucesso:", loginResponse.id);
+      const token = loginResponse?.token;
+      const accountId = loginResponse?.account?.id;
+      const userId = accountId;
+
       const response = await axios.put(`/v1/account/deposit/${userId}`, {
         valor,
         metodoPagamento,
@@ -39,9 +43,11 @@ const DepositarSaldo = () => {
         dataValidade,
         codigoSeguranca,
         senha,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
-
-      console.log("Depósito realizado com sucesso:", response.data);
 
       setValor("");
       setMetodoPagamento("");
@@ -50,6 +56,11 @@ const DepositarSaldo = () => {
       setCodigoSeguranca("");
       setSenha("");
       setMensagem("Depósito realizado com sucesso!");
+
+      setTimeout(() => {
+        // Redirecionar para a página "/home" após 1,5 segundos
+        navigate("/home");
+      }, 1500);
     } catch (error) {
       console.error("Erro ao realizar o depósito:", error);
       setMensagem(
