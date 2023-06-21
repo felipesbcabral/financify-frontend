@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import "../Styles/DepositarSaldo.css";
 
 const DepositarSaldo = () => {
-  const history = useHistory();
   const { loginResponse } = useContext(AuthContext);
   const [valor, setValor] = useState("");
   const [metodoPagamento, setMetodoPagamento] = useState("");
@@ -58,7 +56,6 @@ const DepositarSaldo = () => {
       setMensagem("Depósito realizado com sucesso!");
 
       setTimeout(() => {
-        // Redirecionar para a página "/home" após 1,5 segundos
         navigate("/home");
       }, 1500);
     } catch (error) {
