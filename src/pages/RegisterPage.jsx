@@ -17,7 +17,7 @@ const CadastroUsuarios = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5294/v1/Account",
+        "/v1/Account",
         {
           FirstName: firstName,
           LastName: lastName,

@@ -5,7 +5,10 @@ import { AuthContext } from "../contexts/AuthProvider";
 import "../Styles/DepositarSaldo.css";
 
 const DepositarSaldo = () => {
+<<<<<<< HEAD
   const history = useHistory();
+=======
+>>>>>>> eeefb53b0d427ac331cfc55e3418582d81555945
   const { loginResponse } = useContext(AuthContext);
   const [valor, setValor] = useState("");
   const [metodoPagamento, setMetodoPagamento] = useState("");
@@ -58,7 +61,10 @@ const DepositarSaldo = () => {
       setMensagem("Depósito realizado com sucesso!");
 
       setTimeout(() => {
+<<<<<<< HEAD
         // Redirecionar para a página "/home" após 1,5 segundos
+=======
+>>>>>>> eeefb53b0d427ac331cfc55e3418582d81555945
         navigate("/home");
       }, 1500);
     } catch (error) {

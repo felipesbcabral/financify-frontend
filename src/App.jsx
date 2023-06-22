@@ -19,7 +19,7 @@ import InitialPage from "./pages/initialPage";
 import ResetPassword from "./pages/ResetPassword";
 import DepositPage from "./pages/DepositarSaldo";
 
-axios.defaults.baseURL = 'http://localhost:5294';
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.headers.get['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
