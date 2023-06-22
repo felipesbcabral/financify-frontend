@@ -79,14 +79,13 @@
 
   .button-container {
     display: flex;
-    flex-direction: column; /* Altere de row para column */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
   .btn-cadastrar,
   .btn-voltar {
-    width: 100px; /* Adicione o tamanho desejado aqui */
+    width: 100px;
   }
 }
-

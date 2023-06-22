@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 .login-page {
   display: flex;
@@ -17,7 +17,7 @@
   border-radius: 10px;
   width: 80%;
   max-width: 600px;
-  font-family: 'Roboto', sans-serif; /* Adição da fonte */
+  font-family: "Roboto", sans-serif;
 }
 
 .label {
@@ -40,7 +40,7 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif; /* Adição da fonte */
+  font-family: "Roboto", sans-serif;
 }
 
 .btLogin-wrapper {
@@ -67,7 +67,7 @@ body {
 }
 
 .btLogin-wrapper btLogin:hover {
-  background-color: #023e73;
+  background-color: #035ba8;
 }
 
 .log-in-btLogin {

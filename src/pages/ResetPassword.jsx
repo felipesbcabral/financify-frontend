@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../Styles/EsqueciSenha.css";
 
 const ResetPassword = () => {
@@ -16,7 +18,7 @@ const ResetPassword = () => {
   useEffect(() => {
     const token = getTokenFromQueryString();
     if (!token) {
-      // Token inválido ou ausente, redirecionar para uma página de erro ou tratamento adequada.
+      navigate("/*");
     }
   }, []);
 
@@ -24,25 +26,28 @@ const ResetPassword = () => {
     event.preventDefault();
 
     if (newPassword === "") {
-      alert("Por favor, preencha o campo de nova senha.");
+      toast.warning("Por favor, preencha o campo de nova senha.");
       return;
     }
 
     setLoading(true);
 
     try {
-      const token = getTokenFromQueryString(); // Obter o token novamente dentro da função handleSubmit
-      // Redefinir a senha
+      const token = getTokenFromQueryString();
       await axios.post(`/v1/Account/reset-password`, {
         token: token,
         newPassword: newPassword,
       });
 
-      alert("Senha redefinida com sucesso!");
-      window.location.href = "/login"; // Redirecionar para a página de login
+      setTimeout(() => {
+        toast.success("Cobrança criada com sucesso.");
+      }, 1000);
+      window.location.href = "/login";
     } catch (error) {
       console.error("Erro ao redefinir a senha:", error);
-      alert("Ocorreu um erro ao redefinir a senha. Por favor, tente novamente.");
+      toast.error(
+        "Ocorreu um erro ao redefinir a senha. Por favor, tente novamente."
+      );
     } finally {
       setLoading(false);
     }
@@ -51,6 +56,7 @@ const ResetPassword = () => {
   return (
     <div className="container">
       <h1 className="title">Redefinir Senha</h1>
+      <ToastContainer />
       <form onSubmit={handleSubmit} className="form-cadastro">
         <div className="form-group">
           <label htmlFor="newPassword">Nova Senha:</label>
