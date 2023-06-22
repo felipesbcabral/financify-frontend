@@ -6,7 +6,6 @@
   import "react-datepicker/dist/react-datepicker.css";
   import { toast, ToastContainer } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
-  import Modal from "react-modal";
   import "../Styles/Home.css";
 
   import { AuthContext } from "../contexts/AuthProvider";
