@@ -17,7 +17,7 @@ const CadastroUsuarios = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5294/v1/Account",
+        "https://financify-back-674ec77a5016.herokuapp.com/v1/Account",
         {
           FirstName: firstName,
           LastName: lastName,
