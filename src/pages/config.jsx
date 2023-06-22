@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUser, FaLock, FaQuestionCircle, FaRegLifeRing } from "react-icons/fa";
+import { FaUser, FaLock, FaRegLifeRing } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "../Styles/config.css";
 

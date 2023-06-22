@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "../Styles/EditCharges.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditChargePage = () => {
   const { chargeId } = useParams();
@@ -57,7 +59,7 @@ const EditChargePage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const updatedCharge = {
       name,
       description,
@@ -65,7 +67,7 @@ const EditChargePage = () => {
       value: parseFloat(value),
       status,
     };
-
+  
     try {
       await axios.put(`/charge/${chargeId}`, updatedCharge);
       navigate("/home", {
@@ -73,7 +75,7 @@ const EditChargePage = () => {
       });
     } catch (error) {
       console.error("Error updating charge:", error);
-      // Lógica adicional em caso de erro na atualização da cobrança (charge), se necessário...
+      toast.error("Erro ao atualizar a cobrança. Por favor, tente novamente mais tarde.");
     }
   };
 
@@ -162,6 +164,7 @@ const EditChargePage = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

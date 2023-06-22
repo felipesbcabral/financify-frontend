@@ -20,21 +20,21 @@ import ResetPassword from "./pages/ResetPassword";
 import DepositPage from "./pages/DepositarSaldo";
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
-axios.defaults.headers.get['Content-Type'] = 'application/json';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.headers.put['Content-Type'] = 'application/json';
-axios.defaults.headers.delete['Content-Type'] = 'application/json';
+axios.defaults.headers.get["Content-Type"] = "application/json";
+axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.put["Content-Type"] = "application/json";
+axios.defaults.headers.delete["Content-Type"] = "application/json";
 
 export default function App() {
   const [logado, setLogado] = useState(false);
   const [userID, setUserID] = useState();
 
-  function handleLogin(event) {
+  function handleLogin() {
     setLogado(true);
     setUserID(100);
   }
 
-  function handleLogout(event) {
+  function handleLogout() {
     setLogado(false);
     setUserID(null);
   }
@@ -67,7 +67,8 @@ export default function App() {
               <Route path="/ajuda" element={<HelpPage />} />
               <Route path="/dados" element={<DataPage />} />
               <Route path="/privacidade" element={<PrivacyPage />} />
-              <Route path="/deposit" element={<DepositPage />} /> // Nova rota "deposit"
+              <Route path="/deposit" element={<DepositPage />} /> // Nova rota
+              "deposit"
             </Route>
           )}
           <Route path="*" element={<ErrorPage />} />

@@ -6,7 +6,10 @@ function PrivacySecurity() {
     <div className="privacy-container">
       <div className="privacy-card">
         <h1>Privacidade e Segurança</h1>
-        <p>Aqui você pode gerenciar suas configurações de privacidade e segurança.</p>
+        <p>
+          Aqui você pode gerenciar suas configurações de privacidade e
+          segurança.
+        </p>
         <ul>
           <li>Gerenciar suas senhas</li>
           <li>Ativar autenticação de dois fatores</li>

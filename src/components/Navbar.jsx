@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../Styles/Navbar.scss";
-import { FaBars, FaSignOutAlt, FaHome, FaPlus, FaCog, FaMoneyBill } from "react-icons/fa";
+import {
+  FaBars,
+  FaSignOutAlt,
+  FaHome,
+  FaPlus,
+  FaCog,
+  FaMoneyBill,
+} from "react-icons/fa";
 
 const Sidebar = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);

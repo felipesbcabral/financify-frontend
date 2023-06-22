@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../Styles/NewValues.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../contexts/AuthProvider";
+import "../Styles/NewValues.css";
 
 const NewValues = () => {
   const [name, setName] = useState("");
@@ -36,9 +38,8 @@ const NewValues = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Verificar se os campos obrigatórios estão preenchidos
     if (!name || !description) {
-      console.error("Os campos obrigatórios não foram preenchidos.");
+      toast.warning("Os campos obrigatórios não foram preenchidos.");
       return;
     }
 
@@ -51,16 +52,22 @@ const NewValues = () => {
     };
 
     try {
-      const token = authContext.loginResponse?.token;
+      authContext.loginResponse?.token;
 
       const response = await axios.post(
         `/charge/accounts/${authContext.loginResponse?.account?.id}`,
         newChargeRequest
       );
       console.log("Cobrança criada com sucesso:", response.data);
+
+      setTimeout(() => {
+        toast.success("Cobrança criada com sucesso.");
+      }, 1000);
+
       navigate("/");
     } catch (error) {
       console.error("Erro ao criar a cobrança:", error);
+      toast.error("Erro ao criar a cobrança.");
     }
   };
 
@@ -70,12 +77,17 @@ const NewValues = () => {
 
   return (
     <div className="new-values-container">
+      <ToastContainer />
       <form className="new-values-form" onSubmit={handleSubmit}>
         <h2 className="new-values-title" style={{ color: "#000" }}>
           Criar cobrança
         </h2>
         <div className="new-values-descricao">
-          <label className="new-values-label" htmlFor="Name" style={{ color: "#000" }}>
+          <label
+            className="new-values-label"
+            htmlFor="Name"
+            style={{ color: "#000" }}
+          >
             Nome:
           </label>
           <input
@@ -88,7 +100,11 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-descricao">
-          <label className="new-values-label" htmlFor="Description" style={{ color: "#000" }}>
+          <label
+            className="new-values-label"
+            htmlFor="Description"
+            style={{ color: "#000" }}
+          >
             Descrição:
           </label>
           <input
@@ -101,7 +117,11 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-descricao">
-          <label className="new-values-label" htmlFor="DueDate" style={{ color: "#000" }}>
+          <label
+            className="new-values-label"
+            htmlFor="DueDate"
+            style={{ color: "#000" }}
+          >
             Data de Vencimento:
           </label>
           <input
@@ -114,7 +134,11 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-valor">
-          <label className="new-values-label" htmlFor="Value" style={{ color: "#000" }}>
+          <label
+            className="new-values-label"
+            htmlFor="Value"
+            style={{ color: "#000" }}
+          >
             Valor:
           </label>
           <input
@@ -127,7 +151,11 @@ const NewValues = () => {
           />
         </div>
         <div className="new-values-status">
-          <label className="new-values-label" htmlFor="Status" style={{ color: "#000" }}>
+          <label
+            className="new-values-label"
+            htmlFor="Status"
+            style={{ color: "#000" }}
+          >
             Status:
           </label>
           <select
@@ -143,10 +171,18 @@ const NewValues = () => {
           </select>
         </div>
         <div className="new-values-button-container">
-          <button className="new-values-btn-save" type="submit" style={{ backgroundColor: "#023e73", color: "#fff" }}>
+          <button
+            className="new-values-btn-save"
+            type="submit"
+            style={{ backgroundColor: "#023e73", color: "#fff" }}
+          >
             Salvar
           </button>
-          <button className="new-values-btn-back" onClick={handleClick} style={{ backgroundColor: "#023e73", color: "#fff" }}>
+          <button
+            className="new-values-btn-back"
+            onClick={handleClick}
+            style={{ backgroundColor: "#023e73", color: "#fff" }}
+          >
             Voltar
           </button>
         </div>

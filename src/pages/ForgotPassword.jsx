@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../Styles/EsqueciSenha.css";
 
 const ForgotPassword = () => {
@@ -12,20 +14,21 @@ const ForgotPassword = () => {
     event.preventDefault();
 
     if (email === "") {
-      alert("Por favor, preencha o campo de e-mail.");
+      toast.error("Por favor, preencha o campo de e-mail.");
       return;
     }
 
     setLoading(true);
 
     try {
-      // Enviar o email de recuperação de senha
       await axios.post(`/v1/Account/send-email`, { email: email });
 
       setEmailSent(true);
     } catch (error) {
       console.error("Erro ao enviar o e-mail:", error);
-      alert("Ocorreu um erro ao enviar o e-mail. Por favor, tente novamente.");
+      toast.error(
+        "Ocorreu um erro ao enviar o e-mail. Por favor, tente novamente."
+      );
     } finally {
       setLoading(false);
     }
@@ -59,10 +62,14 @@ const ForgotPassword = () => {
         </form>
       ) : (
         <div>
-          <p>Um e-mail de recuperação de senha foi enviado para o seu endereço de e-mail.</p>
+          <p>
+            Um e-mail de recuperação de senha foi enviado para o seu endereço de
+            e-mail.
+          </p>
           <p>Por favor, verifique seu e-mail para redefinir a senha.</p>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

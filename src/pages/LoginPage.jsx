@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
-import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../Styles/LoginPage.css";
 
 function LoginPage({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error] = useState("");
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
 
@@ -24,30 +25,23 @@ function LoginPage({ onLogin }) {
     try {
       await authContext.login(email, password);
       onLogin(event);
-      navigate("/home"); // Redirecionar para /home após o login
+      navigate("/home");
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setError(error.response.data.message);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
       } else {
-        setError("Erro ao efetuar login");
+        toast.error("Erro ao efetuar login");
       }
     }
   };
 
-  const handleForgotPassword = () => {
-    // Coloque aqui a lógica de recuperação de senha
-  };
-
-  const handlePasswordClick = () => {
-    handleForgotPassword();
-  };
-
-  const handleEmailClick = () => {
-    navigate("/register");
-  };
-
   return (
     <div className="login-page">
+      <ToastContainer />
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <input
