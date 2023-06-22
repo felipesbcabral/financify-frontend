@@ -69,10 +69,6 @@
   min-width: 150px;
 }
 
-.btn-enviar {
-  background-color: #023e73;
-}
-
 
 @media (max-width: 600px) {
   .form-cadastro {
