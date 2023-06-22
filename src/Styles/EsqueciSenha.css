@@ -62,7 +62,7 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  background-color: #3c0ebe;
+  background-color: #023e73;
   color: #fff;
   padding: 10px;
   margin-right: 10px;
@@ -73,9 +73,6 @@
   background-color: #023e73;
 }
 
-.btn-voltar {
-  background-color: #023e73;
-}
 
 @media (max-width: 600px) {
   .form-cadastro {
