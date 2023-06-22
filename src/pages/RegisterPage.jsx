@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importe o hook useNavigate
 import "../Styles/CadastroUsuarios.css";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ const CadastroUsuarios = () => {
   const [password, setSenha] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Inicialize o hook useNavigate
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +36,8 @@ const CadastroUsuarios = () => {
       console.log(response.data);
 
       alert("Usuário cadastrado com sucesso!");
+
+      navigate("/login"); // Redirecione para a página de login após o cadastro
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data);
@@ -100,4 +103,4 @@ const CadastroUsuarios = () => {
   );
 };
 
-export default CadastroUsuarios;
+export default CadastroUsuarios; // Envie o componente com o withRouter
