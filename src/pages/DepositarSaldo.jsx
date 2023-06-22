@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthProvider";
 import "../Styles/DepositarSaldo.css";
@@ -12,7 +13,8 @@ const DepositarSaldo = () => {
   const [codigoSeguranca, setCodigoSeguranca] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
-
+  const navigate = useNavigate();
+  
   const handleValorChange = (event) => {
     setValor(event.target.value);
   };
@@ -67,6 +69,7 @@ const DepositarSaldo = () => {
   };
 
   const handleCancelar = () => {
+    navigate("/home");
     setValor("");
     setMetodoPagamento("");
     setNumeroCartao("");
