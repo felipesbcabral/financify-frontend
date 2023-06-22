@@ -47,7 +47,7 @@ const ForgotPassword = () => {
             />
           </div>
           <div className="button-container">
-            <button type="submit" className="btn-cadastrar" disabled={loading}>
+            <button type="submit" className="btn-enviar" disabled={loading}>
               {loading ? "Enviando..." : "Enviar"}
             </button>
             <Link to="/login" className="link-voltar">

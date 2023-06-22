@@ -51,7 +51,7 @@
 .btn-voltar {
   display: inline-block;
   background-color: #574f66;
-  color: #3c0ebe;
+  background-color: #023e73;
   padding: 10px;
   min-width: 150px; /* Tamanho fixo dos botões */
 }
