@@ -94,16 +94,15 @@ const CadastroUsuarios = () => {
           />
         </div>
         <div className="btCadastro-container">
-  <button type="submit" className="btn-voltar">
-    Cadastrar
-  </button>
-  <Link to="/login" className="link-voltar">
-    <button type="button" className="btn-voltar">
-      Voltar
-    </button>
-  </Link>
-</div>
-
+          <button type="submit" className="btn-voltar">
+            Cadastrar
+          </button>
+          <Link to="/login" className="link-voltar">
+            <button type="button" className="btn-voltar">
+              Voltar
+            </button>
+          </Link>
+        </div>
       </form>
     </div>
   );

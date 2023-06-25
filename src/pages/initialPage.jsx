@@ -10,19 +10,19 @@ function InitialPage() {
   };
 
   return (
-    <div className="home-container">
-      <h1>Financify - Controle Financeiro</h1>
-      <p>
+    <div className="initial-page-container">
+      <h1 className="initial-page-heading">Financify - Controle Financeiro</h1>
+      <p className="initial-page-text">
         O Financify é seu aplicativo para controle financeiro pessoal, ajudando
         você a gerenciar suas finanças de forma eficaz.
       </p>
-      <p>Com o Financify, você pode:</p>
-      <ul>
+      <p className="initial-page-text">Com o Financify, você pode:</p>
+      <ul className="initial-page-list">
         <li>Acompanhar seus gastos diários, semanais e mensais</li>
         <li>Categorizar suas despesas para uma melhor compreensão</li>
         <li>Economizar dinheiro e planejar seu orçamento</li>
       </ul>
-      <button className="buttonInitial" onClick={handleLoginClick}>
+      <button className="initial-page-button" onClick={handleLoginClick}>
         Acessar o Financify
       </button>
     </div>

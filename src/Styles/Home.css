@@ -48,6 +48,7 @@
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
+
 .modal-button-delete {
   background-color: #af0514;
   border: none;
@@ -62,21 +63,41 @@
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
+
 .home-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  justify-content: center;
+  margin-top: 50px;
   width: 80%;
   max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 80vh;
+  text-align: center;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .home-action-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  width: 40%;
   margin-bottom: 20px;
+}
+
+.home-action-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.body-home{
+  height: 100vh;
 }
 
 .home-datePickerContainer {
@@ -129,6 +150,12 @@
   width: 70px;
   transition: background-color 0.3s ease;
 }
+
+.home-datePickerWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .home-deleteButton {
   background-color: #af0514;
   border: none;
@@ -208,19 +235,6 @@
   text-align: left;
 }
 
-.home-dashboard-table-container .home-table th#due-date,
-.home-dashboard-table-container .home-table td#due-date,
-.home-dashboard-table-container .home-table th#value,
-.home-dashboard-table-container .home-table td#value,
-.home-dashboard-table-container .home-table th#status,
-.home-dashboard-table-container .home-table td#status,
-.home-dashboard-table-container .home-table th#created-at,
-.home-dashboard-table-container .home-table td#created-at,
-.home-dashboard-table-container .home-table th#updated-at,
-.home-dashboard-table-container .home-table td#updated-at {
-  width: 15%;
-}
-
 .billing-table {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -263,24 +277,68 @@
     width: 90%;
   }
 
-  .home-dashboard-table-container .table-responsive {
+  .home-table {
+    font-size: 12px;
+  }
+
+  .home-table th,
+  .home-table td {
+    padding: 8px;
+  }
+
+  .home-table th {
+    font-size: 14px;
+  }
+
+  .home-action-container {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .home-addButton,
+  .home-editButton,
+  .home-deleteButton {
+    width: 100%;
+  }
+
+  .home-dashboard-table-container {
     overflow-x: auto;
   }
 }
+
+.home-dashboard-table-container {
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .home-datePickerWrapper {
+    align-items: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .home-container {
+    width: 95%;
+  }
+
+  .home-form {
+    width: 100%;
+  }
+
+  .home-balance {
+    font-size: 18px;
+  }
+}
+
 
 @media (max-width: 300px) {
   .home-container {
     width: 95%;
   }
 
-  .home-datePickerContainer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .home-datePicker {
-    margin-top: 10px;
-    width: 100%;
+    width: 30%;
   }
 }
 
@@ -292,6 +350,14 @@
   display: flex;
   align-items: center;
 }
+
+.home-form {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 
 .success-message span {
   margin-right: 5px;

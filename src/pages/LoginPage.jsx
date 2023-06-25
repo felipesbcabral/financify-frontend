@@ -44,22 +44,26 @@ function LoginPage({ onLogin }) {
       <ToastContainer />
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="input-container">
+          <label className="label" htmlFor="email">E-mail:</label>
           <input
             type="email"
             value={email}
             onChange={handleEmailChange}
             className="input"
-            placeholder="Email"
+            id="email"
+            placeholder="Digite seu e-mail"
             required
           />
         </div>
         <div className="input-container">
+          <label className="label" htmlFor="password">Senha:</label>
           <input
             type="password"
             value={password}
             onChange={handlePasswordChange}
             className="input"
-            placeholder="Senha"
+            id="password"
+            placeholder="Digite sua senha"
             required
           />
         </div>

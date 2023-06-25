@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 70vh;
 }
 
 .title {
@@ -75,6 +76,10 @@
 
 .btn-voltar {
   background-color: #023e73;
+}
+
+.btn-enviar:hover {
+  background-color: #035ba8;
 }
 
 @media (max-width: 600px) {

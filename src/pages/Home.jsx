@@ -114,96 +114,103 @@ const Home = () => {
   });
 
   return (
-    <div className="home-container">
-      <div className="home-balance">
-        Saldo: R$ <span className="balance-amount">{balance}</span>
-      </div>
-      <div className="home-action-container">
-        <NavLink to="/New">
-          <Button variant="primary" className="home-addButton">
-            Criar Cobrança
-          </Button>
-        </NavLink>
-        <div className="home-datePickerContainer">
-          <span>Período:</span>
-          <DatePicker
-            selected={startDate}
-            onChange={handleDateRangeChange}
-            startDate={startDate}
-            endDate={endDate}
-            selectsRange
-            className="home-datePicker"
-          />
-        </div>
-      </div>
-      <div className="home-dashboard-table-container">
-        <div className="home-table-responsive">
-          <Table striped bordered hover className="home-table billing-table">
-            <thead>
-              <tr>
-                <th>Descrição</th>
-                <th>Vencimento</th>
-                <th>Valor</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredBillingData.map((charge) => (
-                <tr key={charge.id}>
-                  <td>{charge.description}</td>
-                  <td>{formatDate(charge.dueDate)}</td>
-                  <td>{charge.value}</td>
-                  <td>{charge.status}</td>
-                  <td>
-                    <Button
-                      variant="primary"
-                      className="home-editButton"
-                      onClick={() => handleEditCharge(charge.id)}
-                    >
-                      Editar
-                    </Button>
-                    <Button
-                      variant="danger"
-                      className="home-deleteButton"
-                      onClick={() => handleShowDeleteModal(charge.id)}
-                    >
-                      Excluir
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
-      </div>
-      <ToastContainer />
-      {showDeleteModal && (
-        <div className="modal-overlay">
-          <div className="modal-container">
-            <h2 className="modal-header">Confirmar Exclusão</h2>
-            <div className="modal-body">
-              Tem certeza de que deseja excluir essa cobrança?
-            </div>
-            <div className="modal-footer">
-              <Button
-                variant="secondary"
-                onClick={handleCloseDeleteModal}
-                className="modal-button-cancel"
-              >
-                Cancelar
-              </Button>
-              <Button
-                variant="danger"
-                onClick={handleConfirmDelete}
-                className="modal-button-delete"
-              >
-                Excluir
-              </Button>
+    <div className="body-home">
+      <div className="home-container">
+        <div className="home-action-container">
+          <NavLink to="/New">
+            <Button variant="primary" className="home-addButton">
+              Criar Cobrança
+            </Button>
+          </NavLink>
+          <div className="home-datePickerContainer">
+            <span>Período:</span>
+            <div className="home-datePickerWrapper">
+              <DatePicker
+                selected={startDate}
+                onChange={handleDateRangeChange}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                className="home-datePicker"
+              />
             </div>
           </div>
         </div>
-      )}
+        <div className="home-form">
+          <div className="home-balance">
+            Saldo: R$ <span className="balance-amount">{balance}</span>
+          </div>
+          <div className="home-dashboard-table-container">
+            <div className="home-table-responsive">
+              <Table striped bordered hover className="home-table billing-table">
+                <thead>
+                  <tr>
+                    <th>Descrição</th>
+                    <th>Vencimento</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredBillingData.map((charge) => (
+                    <tr key={charge.id}>
+                      <td>{charge.description}</td>
+                      <td>{formatDate(charge.dueDate)}</td>
+                      <td>{charge.value}</td>
+                      <td>{charge.status}</td>
+                      <td>
+                        <Button
+                          variant="primary"
+                          className="home-editButton"
+                          onClick={() => handleEditCharge(charge.id)}
+                        >
+                          Editar
+                        </Button>
+                        <Button
+                          variant="danger"
+                          className="home-deleteButton"
+                          onClick={() => handleShowDeleteModal(charge.id)}
+                        >
+                          Excluir
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          </div>
+        </div>
+
+        <ToastContainer />
+        {showDeleteModal && (
+          <div className="modal-overlay">
+            <div className="modal-container">
+              <h2 className="modal-header">Confirmar Exclusão</h2>
+              <div className="modal-body">
+                Tem certeza de que deseja excluir essa cobrança?
+              </div>
+              <div className="modal-footer">
+                <Button
+                  variant="secondary"
+                  onClick={handleCloseDeleteModal}
+                  className="modal-button-cancel"
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={handleConfirmDelete}
+                  className="modal-button-delete"
+                >
+                  Excluir
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

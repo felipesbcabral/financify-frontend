@@ -18,6 +18,7 @@ import axios from "axios";
 import InitialPage from "./pages/initialPage";
 import ResetPassword from "./pages/ResetPassword";
 import DepositPage from "./pages/DepositarSaldo";
+import Footer from "./components/Footer"; // Importe o componente Footer
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.headers.get["Content-Type"] = "application/json";
@@ -42,37 +43,37 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          {!logado ? (
-            <>
+          <Routes>
+            {!logado ? (
+              <>
+                <Route
+                  path="/login"
+                  element={<LoginPage onLogin={handleLogin} />}
+                />
+                <Route path="/" element={<InitialPage />} />
+                <Route path="/forgot" element={<ForgotPassword />} />
+                <Route path="/reset" element={<ResetPassword />} />
+                <Route path="/register" element={<RegisterPage />} />
+              </>
+            ) : (
               <Route
-                path="/login"
-                element={<LoginPage onLogin={handleLogin} />}
-              />
-              <Route path="/" element={<InitialPage />} />
-              <Route path="/forgot" element={<ForgotPassword />} />
-              <Route path="/reset" element={<ResetPassword />} />
-              <Route path="/register" element={<RegisterPage />} />
-            </>
-          ) : (
-            <Route
-              path="/"
-              element={<Layout id={userID} onLogout={handleLogout} />}
-            >
-              <Route index element={<HomePage />} />
-              <Route path="/home" element={<HomePage />} />
-              <Route path="/new" element={<AddChargePage />} />
-              <Route path="/edit/:chargeId" element={<EditValues />} />
-              <Route path="/config" element={<Config />} />
-              <Route path="/ajuda" element={<HelpPage />} />
-              <Route path="/dados" element={<DataPage />} />
-              <Route path="/privacidade" element={<PrivacyPage />} />
-              <Route path="/deposit" element={<DepositPage />} /> // Nova rota
-              "deposit"
-            </Route>
-          )}
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+                path="/"
+                element={<Layout id={userID} onLogout={handleLogout} />}
+              >
+                <Route index element={<HomePage />} />
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/new" element={<AddChargePage />} />
+                <Route path="/edit/:chargeId" element={<EditValues />} />
+                <Route path="/config" element={<Config />} />
+                <Route path="/ajuda" element={<HelpPage />} />
+                <Route path="/dados" element={<DataPage />} />
+                <Route path="/privacidade" element={<PrivacyPage />} />
+                <Route path="/deposit" element={<DepositPage />} />
+              </Route>
+            )}
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+          <Footer />
       </AuthProvider>
     </BrowserRouter>
   );

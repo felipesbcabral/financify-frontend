@@ -1,0 +1,55 @@
+.footer {
+  background-color: black;
+  color: white;
+  padding: 0.3rem;
+  font-size: 14px;
+  text-align: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__social-media {
+    margin-bottom: 1rem;
+
+    .footer__social-media-icon {
+      font-size: 20px;
+      margin-right: 1rem;
+      color: white;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: gray;
+      }
+    }
+  }
+
+  &__links {
+    margin-bottom: 0.1rem;
+
+    a {
+      color: white;
+      text-decoration: none;
+      margin-right: 1rem;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: gray;
+      }
+    }
+  }
+
+  &__credits {
+    font-size: 12px;
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+
+}

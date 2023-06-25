@@ -14,32 +14,58 @@ const NewValues = () => {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
+  const [isNameEmpty, setIsNameEmpty] = useState(false);
+  const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(false);
+  const [isDueDateEmpty, setIsDueDateEmpty] = useState(false);
+  const [isValueEmpty, setIsValueEmpty] = useState(false);
+  const [isStatusEmpty, setIsStatusEmpty] = useState(false);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
+    setIsNameEmpty(false);
   };
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
+    setIsDescriptionEmpty(false);
   };
 
   const handleDueDateChange = (event) => {
     setDueDate(event.target.value);
+    setIsDueDateEmpty(false);
   };
 
   const handleValueChange = (event) => {
     setValue(event.target.value);
+    setIsValueEmpty(false);
   };
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
+    setIsStatusEmpty(false);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!name || !description) {
-      toast.warning("Os campos obrigatórios não foram preenchidos.");
+    if (!name || !description || !dueDate || !value || !status) {
+      if (!name) {
+        setIsNameEmpty(true);
+      }
+      if (!description) {
+        setIsDescriptionEmpty(true);
+      }
+      if (!dueDate) {
+        setIsDueDateEmpty(true);
+      }
+      if (!value) {
+        setIsValueEmpty(true);
+      }
+      if (!status) {
+        setIsStatusEmpty(true);
+      }
+
+      toast.warning("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
 
@@ -89,6 +115,7 @@ const NewValues = () => {
             style={{ color: "#000" }}
           >
             Nome:
+            {isNameEmpty && <span style={{ color: "red" }}>*</span>}
           </label>
           <input
             className="new-values-inputtext"
@@ -106,6 +133,7 @@ const NewValues = () => {
             style={{ color: "#000" }}
           >
             Descrição:
+            {isDescriptionEmpty && <span style={{ color: "red" }}>*</span>}
           </label>
           <input
             className="new-values-inputtext"
@@ -123,6 +151,7 @@ const NewValues = () => {
             style={{ color: "#000" }}
           >
             Data de Vencimento:
+            {isDueDateEmpty && <span style={{ color: "red" }}>*</span>}
           </label>
           <input
             className="new-values-inputtext"
@@ -140,6 +169,7 @@ const NewValues = () => {
             style={{ color: "#000" }}
           >
             Valor:
+            {isValueEmpty && <span style={{ color: "red" }}>*</span>}
           </label>
           <input
             className="new-values-inputtext"
@@ -157,6 +187,7 @@ const NewValues = () => {
             style={{ color: "#000" }}
           >
             Status:
+            {isStatusEmpty && <span style={{ color: "red" }}>*</span>}
           </label>
           <select
             className="new-values-select"
