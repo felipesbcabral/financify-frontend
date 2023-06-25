@@ -57,7 +57,7 @@ export default function App() {
           ) : (
             <Route
               path="/"
-              element={<Layout id={userID} onLogout={handleLogout} />}
+              element={<Layout id={userID} onLogout={handleLogout} logado={logado} />} 
             >
               <Route index element={<HomePage />} />
               <Route path="/home" element={<HomePage />} />
@@ -67,8 +67,7 @@ export default function App() {
               <Route path="/ajuda" element={<HelpPage />} />
               <Route path="/dados" element={<DataPage />} />
               <Route path="/privacidade" element={<PrivacyPage />} />
-              <Route path="/deposit" element={<DepositPage />} /> // Nova rota
-              "deposit"
+              <Route path="/deposit" element={<DepositPage />} />
             </Route>
           )}
           <Route path="*" element={<ErrorPage />} />
