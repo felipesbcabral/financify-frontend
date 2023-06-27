@@ -12,24 +12,24 @@ function ErrorPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-fixed bg-cover bg-bottom error-bg">
+    <div className="flex items-center justify-center min-h-screen bg-fixed bg-cover bg-bottom error-bg dark:bg-gray-900">
       <div className="container">
         <div className="row">
           <div className="col-sm-8 offset-sm-2 text-red-600 text-center -mt-52">
             <div className="relative">
-              <h1 className="relative text-9xl tracking-tighter-less text-shadow font-sans font-bold">
+              <h1 className="relative text-9xl tracking-tighter-less text-shadow font-sans font-bold dark:text-red-600">
                 <span>4</span>
                 <span>0</span>
                 <span>4</span>
               </h1>
-              <span className="absolute top-0 -ml-12 text-red-600 font-semibold">
+              <span className="absolute top-0 -ml-12 text-red-600 font-semibold dark:text-red-600">
                 Oops!
               </span>
             </div>
-            <h5 className="text-red-600 font-semibold -mr-10 -mt-3">
+            <h5 className="text-red-600 font-semibold -mr-10 -mt-3 dark:text-red-600">
               Page not found
             </h5>
-            <p className="text-red-600 mt-2 mb-6">
+            <p className="text-red-600 mt-2 mb-6 dark:text-red-600">
               We are sorry, but the page you requested was not found.
             </p>
             <div className="flex flex-col">
