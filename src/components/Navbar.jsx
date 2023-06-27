@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const [isLoggedIn, setIsLoggedIn] = useState(!!authContext.loginResponse);
@@ -12,10 +12,9 @@ const Navbar = () => {
     setIsLoggedIn(!!authContext.loginResponse);
   }, [authContext.loginResponse]);
 
-  const handleLogout = () => {
-    authContext.logout();
-    authContext.setLoginResponse(null);
-    navigate("/home");
+  const handleLogout = (event) => {
+    props.onLogout(event);
+    navigate("/login");
   };
 
   const handleMenuToggle = () => {
@@ -94,29 +93,17 @@ const Navbar = () => {
                 Depositar
               </NavLink>
             </li>
-            {isLoggedIn ? (
-              <li>
-                <button
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  onClick={() => {
-                    handleMenuToggle();
-                    handleLogout();
-                  }}
-                >
-                  Sair
-                </button>
-              </li>
-            ) : (
-              <li>
-                <NavLink
-                  to="/login"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  onClick={handleMenuToggle}
-                >
-                  Entrar
-                </NavLink>
-              </li>
-            )}
+            <li>
+              <button
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                onClick={() => {
+                  handleMenuToggle();
+                  handleLogout();
+                }}
+              >
+                Sair
+              </button>
+            </li>
           </ul>
         </div>
       </div>
