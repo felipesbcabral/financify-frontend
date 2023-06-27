@@ -96,7 +96,7 @@ const EditChargePage = () => {
               <div className="block pl-2 font-semibold text-xl self-start text-gray-700">
                 <h2 className="leading-relaxed">Editar cobrança</h2>
                 <p className="text-sm text-gray-500 font-normal leading-relaxed">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                   Edite sua cobrança caso queira atualizar algum dado.
                 </p>
               </div>
             </div>

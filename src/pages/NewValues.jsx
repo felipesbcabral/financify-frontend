@@ -97,7 +97,7 @@ const NewValues = () => {
             </div>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <div className="flex flex-col">
+                <div className="flex flex-col mb-4">
                   <label className="leading-loose">Titulo:</label>
                   <input
                     type="text"
@@ -107,7 +107,7 @@ const NewValues = () => {
                     onChange={handleNameChange}
                   />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col mb-4">
                   <label className="leading-loose">Descrição:</label>
                   <input
                     type="text"
@@ -117,7 +117,7 @@ const NewValues = () => {
                     onChange={handleDescriptionChange}
                   />
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 mb-4">
                   <div className="flex flex-col">
                     <label className="leading-loose">Data de vencimento:</label>
                     <div className="relative focus-within:text-gray-600 text-gray-400">
@@ -131,7 +131,7 @@ const NewValues = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col mb-4">
                   <label className="leading-loose">Valor:</label>
                   <input
                     type="text"
@@ -141,7 +141,7 @@ const NewValues = () => {
                     onChange={handleValueChange}
                   />
                 </div>
-                <div className="new-values-status">
+                <div className="new-values-status mb-4">
                   <label
                     className="new-values-label"
                     htmlFor="status"
