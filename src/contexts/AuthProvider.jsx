@@ -66,6 +66,8 @@ export const AuthProvider = ({ children }) => {
     loginResponse,
     getCharge,
     updateCharge,
+    setLoginResponse,
+    setUserId
   };
 
   return (
