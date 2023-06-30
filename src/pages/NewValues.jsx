@@ -27,7 +27,46 @@ const NewValues = () => {
   };
 
   const handleValueChange = (event) => {
-    setValue(event.target.value);
+    const value = event.target.value;
+    if (value === "") {
+      setValue(value);
+      return;
+    }
+    const valueWithoutSeparators = value.replace(/\./g, "").replace(/,/g, ".");
+    const regex = /^[0-9]*([.,][0-9]*)?$/;
+    if (!regex.test(valueWithoutSeparators)) {
+      toast.warning("O valor deve conter apenas números e um separador decimal.");
+      return;
+    }
+    if (value < 0) {
+      toast.warning("O valor não pode ser menor que zero.");
+      return;
+    }
+    const numberValue = parseFloat(valueWithoutSeparators);
+    if (isNaN(numberValue)) {
+      toast.warning("O valor deve ser um número válido.");
+      return;
+    }
+    const formattedValue = numberValue.toLocaleString("pt-BR", {
+      maximumFractionDigits: 20,
+    });
+    setValue(formattedValue);
+  };  
+
+  const handleValueBlur = (event) => {
+    const value = event.target.value;
+    if (value === "") {
+      setValue("");
+      return;
+    }
+    const valueWithoutSeparators = value.replace(/\./g, "").replace(/,/g, ".");
+    const numberValue = parseFloat(valueWithoutSeparators);
+    if (isNaN(numberValue)) {
+      toast.warning("O valor deve ser um número válido.");
+      return;
+    }
+    const formattedValue = numberValue.toLocaleString("pt-BR");
+    setValue(formattedValue);
   };
 
   const handleStatusChange = (event) => {
@@ -72,11 +111,6 @@ const NewValues = () => {
       console.error("Erro ao criar a cobrança:", error);
       toast.error("Erro ao criar a cobrança.");
     }
-  };
-
-  const formatDate = (dateString) => {
-    const [day, month, year] = dateString.split("/");
-    return `${year}-${month}-${day}`;
   };
 
   return (
@@ -139,6 +173,7 @@ const NewValues = () => {
                     placeholder="Valor da cobrança"
                     value={value}
                     onChange={handleValueChange}
+                    onBlur={handleValueBlur}
                   />
                 </div>
                 <div className="new-values-status mb-4">

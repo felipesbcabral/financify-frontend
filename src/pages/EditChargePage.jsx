@@ -49,9 +49,47 @@ const EditChargePage = () => {
   };
 
   const handleValueChange = (event) => {
-    setValue(event.target.value);
-  };
+    const value = event.target.value;
+    if (value === "") {
+      setValue(value);
+      return;
+    }
+    const valueWithoutSeparators = value.replace(/\./g, "").replace(/,/g, ".");
+    const regex = /^[0-9]*([.,][0-9]*)?$/;
+    if (!regex.test(valueWithoutSeparators)) {
+      toast.warning("O valor deve conter apenas números e um separador decimal.");
+      return;
+    }
+    if (value < 0) {
+      toast.warning("O valor não pode ser menor que zero.");
+      return;
+    }
+    const numberValue = parseFloat(valueWithoutSeparators);
+    if (isNaN(numberValue)) {
+      toast.warning("O valor deve ser um número válido.");
+      return;
+    }
+    const formattedValue = numberValue.toLocaleString("pt-BR", {
+      maximumFractionDigits: 20,
+    });
+    setValue(formattedValue);
+  };  
 
+  const handleValueBlur = (event) => {
+    const value = event.target.value;
+    if (value === "") {
+      setValue("");
+      return;
+    }
+    const valueWithoutSeparators = value.replace(/\./g, "").replace(/,/g, ".");
+    const numberValue = parseFloat(valueWithoutSeparators);
+    if (isNaN(numberValue)) {
+      toast.warning("O valor deve ser um número válido.");
+      return;
+    }
+    const formattedValue = numberValue.toLocaleString("pt-BR");
+    setValue(formattedValue);
+  };
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
   };
@@ -154,10 +192,11 @@ const EditChargePage = () => {
                   <div className="flex flex-col">
                     <label className="leading-loose">Valor:</label>
                     <input
-                      type="number"
+                      type="text"
                       className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                       value={value}
                       onChange={handleValueChange}
+                      onBlur={handleValueBlur}
                       placeholder="Valor da cobrança"
                     />
                   </div>
