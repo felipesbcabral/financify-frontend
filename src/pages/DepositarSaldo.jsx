@@ -18,6 +18,11 @@ const DepositarSaldo = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (valor === "") {
+      toast.error("O campo Valor do depósito é obrigatório.");
+      return;
+    }
+
     if (valor <= 0) {
       toast.error("O valor do depósito deve ser maior que zero.");
       return;
@@ -125,6 +130,7 @@ const DepositarSaldo = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
