@@ -11,6 +11,7 @@ const CadastroUsuarios = () => {
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // Novo estado
 
   const navigate = useNavigate();
 
@@ -70,13 +71,20 @@ const CadastroUsuarios = () => {
       setSenha("");
       setEmail("");
       setErrors([]);
+      setErrorMessage(""); // Limpar a mensagem de erro
 
       navigate("/login");
     } catch (error) {
       if (error.response && error.response.data) {
         console.error(error.response.data);
+
+        // Definir a mensagem de erro retornada pelo backend
+        setErrorMessage(error.response.data);
       } else {
         console.error("Ocorreu um erro ao cadastrar o usuário");
+
+        // Definir uma mensagem de erro genérica
+        setErrorMessage("Ocorreu um erro ao cadastrar o usuário");
       }
     }
   };
@@ -104,12 +112,8 @@ const CadastroUsuarios = () => {
               className="space-y-4 md:space-y-6"
               action="#"
             >
-              {errors.length > 0 && (
-                <div className="mb-4 text-red-500 text-sm">
-                  {errors.map((error, index) => (
-                    <p key={index}>{error}</p>
-                  ))}
-                </div>
+              {errorMessage && (
+                <div className="mb-4 text-red-500 text-sm">{errorMessage}</div>
               )}
               <div className="relative">
                 <label
