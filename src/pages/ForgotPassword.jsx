@@ -83,6 +83,7 @@ const ForgotPassword = () => {
               <div className="flex items-start">
                 <div className="flex items-center h-5">
                   <input
+                    required
                     id="newsletter"
                     aria-describedby="newsletter"
                     type="checkbox"
