@@ -28,45 +28,7 @@ const NewValues = () => {
 
   const handleValueChange = (event) => {
     const value = event.target.value;
-    if (value === "") {
-      setValue(value);
-      return;
-    }
-    const valueWithoutSeparators = value.replace(/\./g, "").replace(/,/g, ".");
-    const regex = /^[0-9]*([.,][0-9]*)?$/;
-    if (!regex.test(valueWithoutSeparators)) {
-      toast.warning("O valor deve conter apenas números e um separador decimal.");
-      return;
-    }
-    if (value < 0) {
-      toast.warning("O valor não pode ser menor que zero.");
-      return;
-    }
-    const numberValue = parseFloat(valueWithoutSeparators);
-    if (isNaN(numberValue)) {
-      toast.warning("O valor deve ser um número válido.");
-      return;
-    }
-    const formattedValue = numberValue.toLocaleString("pt-BR", {
-      maximumFractionDigits: 20,
-    });
-    setValue(formattedValue);
-  };  
-
-  const handleValueBlur = (event) => {
-    const value = event.target.value;
-    if (value === "") {
-      setValue("");
-      return;
-    }
-    const valueWithoutSeparators = value.replace(/\./g, "").replace(/,/g, ".");
-    const numberValue = parseFloat(valueWithoutSeparators);
-    if (isNaN(numberValue)) {
-      toast.warning("O valor deve ser um número válido.");
-      return;
-    }
-    const formattedValue = numberValue.toLocaleString("pt-BR");
-    setValue(formattedValue);
+    setValue(value);
   };
 
   const handleStatusChange = (event) => {
@@ -81,7 +43,7 @@ const NewValues = () => {
     event.preventDefault();
 
     if (!name || !description) {
-      toast.warning("Os campos obrigatórios não foram preenchidos.");
+      toast.warning("Preencha todos os campos para criar uma cobrança.");
       return;
     }
 
@@ -94,17 +56,14 @@ const NewValues = () => {
     };
 
     try {
-      authContext.loginResponse?.token;
-
       const response = await axios.post(
         `/charge/accounts/${authContext.loginResponse?.account?.id}`,
         newChargeRequest
       );
+
       console.log("Cobrança criada com sucesso:", response.data);
 
-      setTimeout(() => {
-        toast.success("Cobrança criada com sucesso.");
-      }, 1000);
+      toast.success("Cobrança criada com sucesso.");
 
       navigate("/");
     } catch (error) {
@@ -173,7 +132,6 @@ const NewValues = () => {
                     placeholder="Valor da cobrança"
                     value={value}
                     onChange={handleValueChange}
-                    onBlur={handleValueBlur}
                   />
                 </div>
                 <div className="new-values-status mb-4">
@@ -199,7 +157,7 @@ const NewValues = () => {
               </div>
               <div className="pt-4 flex items-center space-x-4">
                 <button
-                  className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none"
+                  className="flex justify-centeritems-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none"
                   onClick={handleCancel}
                 >
                   <svg
@@ -229,6 +187,7 @@ const NewValues = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
